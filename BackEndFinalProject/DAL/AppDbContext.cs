@@ -11,7 +11,6 @@ namespace BackEndFinalProject.DAL
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseDetail> CourseDetails { get; set; }
@@ -24,6 +23,7 @@ namespace BackEndFinalProject.DAL
         public DbSet<CategoryEvent> CategoryEvents { get; set; }
         public DbSet<CategoryBlog> CategoryBlogs { get; set; }
 
+        // # # # # # # # # # # # # # # # Data # # # # # # # # # # # # # # # # # # # //
         #region Data in the Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -286,7 +286,7 @@ namespace BackEndFinalProject.DAL
                     new Event
                     {
                         Id = 1,
-                        Image = "event-details.jpg",
+                        Image = "event5.jpg",
                         Title = "ADVANCE PHP WORKSHOP",
                         TimeStart = new DateTime(2020,7,20,9,30,0),
                         TimeEnd = new DateTime(2020,7,20,16,45,0),

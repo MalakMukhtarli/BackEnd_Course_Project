@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject\\BackEndFinalProject.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject\\BackEndFinalProject.csproj": {
+    "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject\\BackEndFinalProject.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject.csproj",
         "projectName": "BackEndFinalProject",
-        "projectPath": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject\\BackEndFinalProject.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEndFinalProject\\BackEndFinalProject\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Code Academy\\BackEnd_Final_Project\\BackEnd_Final_Project\\BackEndFinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -56,6 +56,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [
