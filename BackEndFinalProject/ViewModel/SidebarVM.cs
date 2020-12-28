@@ -10,5 +10,6 @@ namespace BackEndFinalProject.ViewModel
     {
         public List<Category> Categories { get; set; }
         public List<Blog> Blogs { get; set; }
+        public List<Event> Events { get; set; }
     }
 }
