@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201224191153_CreateSliderTableFirstMigrate.cs" />
     <Compile Remove="Migrations\20201224191153_CreateSliderTableFirstMigrate.Designer.cs" />
+    <Compile Remove="Migrations\20201228231709_CreateTeacherAndTeacherDetailTable.cs" />
+    <Compile Remove="Migrations\20201228231709_CreateTeacherAndTeacherDetailTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -22,6 +22,8 @@ namespace BackEndFinalProject.DAL
         public DbSet<CategoryCourse> CategoryCourses { get; set; }
         public DbSet<CategoryEvent> CategoryEvents { get; set; }
         public DbSet<CategoryBlog> CategoryBlogs { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherDetail> TeacherDetails { get; set; }
 
         // # # # # # # # # # # # # # # # Data # # # # # # # # # # # # # # # # # # # //
         #region Data in the Database
@@ -667,7 +669,397 @@ namespace BackEndFinalProject.DAL
                         Id = 6,
                         Name = "PHP"
                     }
-                    );                        
+                    );
+
+            modelBuilder.Entity<Teacher>().HasData(
+                    new Teacher
+                    {
+                        Id = 1,
+                        Name= "Ömür",
+                        Surname= "Jabiyeva",
+                        Image= "teacher4.jpg",
+                        Position= "Associate Professor",
+                        Facebook="#",
+                        Pinterest="#",
+                        Vimeo="#",
+                        Twitter="#",
+                        IsDeleted=false
+                    },
+                    new Teacher
+                    {
+                        Id = 2,
+                        Name = "Kamran",
+                        Surname = "Jabiyev",
+                        Image = "forever.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 3,
+                        Name = "KEVIN",
+                        Surname = "WILLIAMS",
+                        Image = "teacher1.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 4,
+                        Name = "EAMILY",
+                        Surname = "CRISTIAN",
+                        Image = "teacher2.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 5,
+                        Name = "JASMIN",
+                        Surname = "SMITH",
+                        Image = "teacher5.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 6,
+                        Name = "STEPHEN",
+                        Surname = "FLEMING",
+                        Image = "teacher6.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 7,
+                        Name = "JULIA",
+                        Surname = "WILLIAMS",
+                        Image = "teacher7.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 8,
+                        Name = "NAIL",
+                        Surname = "ANDERSON",
+                        Image = "teacher8.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 9,
+                        Name = "STUART",
+                        Surname = "KELVIN",
+                        Image = "teacher9.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 10,
+                        Name = "STUART",
+                        Surname = "KELVIN",
+                        Image = "teacher10.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 11,
+                        Name = "KEVIN",
+                        Surname = "WILLIAMS",
+                        Image = "teacher11.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    },
+                    new Teacher
+                    {
+                        Id = 12,
+                        Name = "SALINA",
+                        Surname = "GOMAZE",
+                        Image = "teacher12.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
+                    }
+                    );
+
+            modelBuilder.Entity<TeacherDetail>().HasData(
+                    new TeacherDetail
+                    {
+                        Id = 1,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "5 years experience",
+                        Hobbies = "Coding, Ballerina, music, travelling, catching fish",
+                        Faculty = "Developer, Department of Micro Biology",
+                        Mail = "omurjb@code.az",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 110,
+                        TeamLeader = 110,
+                        Development=110,
+                        Design=110,
+                        Innovation=110,
+                        Communication=110,
+                        TeacherId=1
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 2,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "25 years experience",
+                        Hobbies = "Eat Fish, Keep Students Sleepless:))), music, travelling, catching fish",
+                        Faculty = "IT, Department of Micro Biology",
+                        Mail = "kamranjb@code.az",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 50,
+                        TeamLeader = 95,
+                        Development = 95,
+                        Design = 95,
+                        Innovation = 95,
+                        Communication = 95,
+                        TeacherId=2
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 3,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart3@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId = 3
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 4,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart4@eduhome.com",
+                        Skype= "stuart.k",
+                        Phone = "(+125) 5896 548 9874",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =4
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 5,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart5@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =5
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 6,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart6@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =6
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 7,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart7@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =7
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 8,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart8@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =8
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 9,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart9@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =9
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 10,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart10@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =10
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 11,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart11@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =11
+                    },
+                    new TeacherDetail
+                    {
+                        Id = 12,
+                        About = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium ue laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quas i architeo beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                        Degree = "PHD in Micro Biology",
+                        Experience = "7 years experience",
+                        Hobbies = "music, travelling, catching fish",
+                        Faculty = "Din, Department of Micro Biology",
+                        Mail = "stuart12@eduhome.com",
+                        Phone = "(+125) 5896 548 9874",
+                        Skype= "stuart.k",
+                        Language = 30,
+                        TeamLeader = 85,
+                        Development = 80,
+                        Design = 75,
+                        Innovation = 79,
+                        Communication = 73,
+                        TeacherId =12
+                    }
+                    );
         }
         #endregion
     }
