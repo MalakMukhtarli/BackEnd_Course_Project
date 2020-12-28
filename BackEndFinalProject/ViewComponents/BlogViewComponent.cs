@@ -27,6 +27,5 @@ namespace BackEndFinalProject.ViewComponents
             List<Blog> blogs2 = _context.Blogs.Where(b=>b.IsDeleted==false).Skip(((int)page - 1) * take).Take(take).ToList();
             return View(await Task.FromResult(blogs2));
         }
-    
     }
 }

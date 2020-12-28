@@ -30,6 +30,7 @@ namespace BackEndFinalProject.Controllers
                 .Include(bc => bc.CategoryBlogs).ThenInclude(c => c.Category).FirstOrDefault(b=>b.Id==id);
             if (blog == null) return NotFound();
 
+            
             return View(blog);
         }
     }

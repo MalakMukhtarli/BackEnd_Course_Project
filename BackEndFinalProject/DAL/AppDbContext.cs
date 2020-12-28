@@ -481,7 +481,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 1,
-                        Image = "event-details.jpg",
+                        Image = "blog1.jpg",
                         Title = "ADVANCE PHP WORKSHOP",
                         AddedTime = new DateTime(2020, 7, 20),
                         ByName = "Alex",
@@ -490,7 +490,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 2,
-                        Image = "event6.jpg",
+                        Image = "blog2.jpg",
                         Title = "LEARNING ENGLISH HISTORY",
                         AddedTime = new DateTime(2020, 7, 18),
                         ByName = "Alex",
@@ -499,7 +499,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 3,
-                        Image = "event7.jpg",
+                        Image = "blog3.jpg",
                         Title = "UI & UX DESIGNER MEETUP",
                         AddedTime = new DateTime(2020, 7, 16),
                         ByName = "Alex",
@@ -508,7 +508,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 4,
-                        Image = "event8.jpg",
+                        Image = "blog4.jpg",
                         Title = "ADVANCE WEB DEVELOPMENT",
                         AddedTime = new DateTime(2020, 7, 14),
                         ByName = "Alex",
@@ -517,7 +517,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 5,
-                        Image = "event9.jpg",
+                        Image = "blog5.jpg",
                         Title = "DIGITAL MARKETING ANALYSIS",
                         AddedTime = new DateTime(2020, 7, 12),
                         ByName = "Alex",
@@ -526,7 +526,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 6,
-                        Image = "event10.jpg",
+                        Image = "blog6.jpg",
                         Title = "DEVELOPER'S MEETUP",
                         AddedTime = new DateTime(2020, 7, 10),
                         ByName = "Alex",
@@ -535,7 +535,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 7,
-                        Image = "event11.jpg",
+                        Image = "blog7.jpg",
                         Title = "WORKSHOP ON MICRO BIOLOGY",
                         AddedTime = new DateTime(2020, 7, 8),
                         ByName = "Alex",
@@ -544,7 +544,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 8,
-                        Image = "event12.jpg",
+                        Image = "blog8.jpg",
                         Title = "ADVANCED PHOTOSHOP 2017",
                         AddedTime = new DateTime(2020, 7, 6),
                         ByName = "Alex",
@@ -553,7 +553,7 @@ namespace BackEndFinalProject.DAL
                     new Blog
                     {
                         Id = 9,
-                        Image = "event13.jpg",
+                        Image = "blog9.jpg",
                         Title = "NEW TREND IN WEBDESIGN",
                         AddedTime = new DateTime(2020, 7, 4),
                         ByName = "Alex",

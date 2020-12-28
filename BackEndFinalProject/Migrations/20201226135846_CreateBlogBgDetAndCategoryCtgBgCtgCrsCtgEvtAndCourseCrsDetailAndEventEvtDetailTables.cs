@@ -230,15 +230,15 @@ namespace BackEndFinalProject.Migrations
                 columns: new[] { "Id", "AddedTime", "ByName", "DeletedTime", "Image", "IsDeleted", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event-details.jpg", false, "ADVANCE PHP WORKSHOP" },
-                    { 2, new DateTime(2020, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event6.jpg", false, "LEARNING ENGLISH HISTORY" },
-                    { 3, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event7.jpg", false, "UI & UX DESIGNER MEETUP" },
-                    { 4, new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event8.jpg", false, "ADVANCE WEB DEVELOPMENT" },
-                    { 5, new DateTime(2020, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event9.jpg", false, "DIGITAL MARKETING ANALYSIS" },
-                    { 6, new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event10.jpg", false, "DEVELOPER'S MEETUP" },
-                    { 7, new DateTime(2020, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event11.jpg", false, "WORKSHOP ON MICRO BIOLOGY" },
-                    { 8, new DateTime(2020, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event12.jpg", false, "ADVANCED PHOTOSHOP 2017" },
-                    { 9, new DateTime(2020, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "event13.jpg", false, "NEW TREND IN WEBDESIGN" }
+                    { 1, new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog1.jpg", false, "ADVANCE PHP WORKSHOP" },
+                    { 2, new DateTime(2020, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog2.jpg", false, "LEARNING ENGLISH HISTORY" },
+                    { 3, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog3.jpg", false, "UI & UX DESIGNER MEETUP" },
+                    { 4, new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog4.jpg", false, "ADVANCE WEB DEVELOPMENT" },
+                    { 5, new DateTime(2020, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog5.jpg", false, "DIGITAL MARKETING ANALYSIS" },
+                    { 6, new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog6.jpg", false, "DEVELOPER'S MEETUP" },
+                    { 7, new DateTime(2020, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog7.jpg", false, "WORKSHOP ON MICRO BIOLOGY" },
+                    { 8, new DateTime(2020, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog8.jpg", false, "ADVANCED PHOTOSHOP 2017" },
+                    { 9, new DateTime(2020, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", null, "blog9.jpg", false, "NEW TREND IN WEBDESIGN" }
                 });
 
             migrationBuilder.InsertData(

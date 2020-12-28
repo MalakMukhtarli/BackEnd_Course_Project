@@ -13,8 +13,8 @@
             </div>
             <div class="course-content">
                 <h3><a href="course-details.html">@course.Name</a></h3>
-                <p>@course.Description</p>
-                <a class="default-btn" asp-controller="Course" asp-action="Index">read more</a>
+                <p>@course.Description.Substring(0, 100)</p>
+                <a class="default-btn" asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">read more</a>
             </div>
         </div>
     </div>

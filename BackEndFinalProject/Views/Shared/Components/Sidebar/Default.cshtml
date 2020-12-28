@@ -1,0 +1,62 @@
+﻿@model SidebarVM
+<div class="col-md-4">
+    <div class="blog-sidebar right">
+        <div class="single-blog-widget mb-47">
+            <h3>search</h3>
+            <div class="blog-search">
+                <form id="search" action="#">
+                    <input type="search" placeholder="Search..." name="search" />
+                    <button type="submit">
+                        <span><i class="fa fa-search"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="single-blog-widget mb-47">
+            <h3>categories</h3>
+            <ul>
+                @foreach (Category category in Model.Categories)
+                {
+                    <li><a href="#">@category.Name</a></li>
+                }
+            </ul>
+        </div>
+        <div class="single-blog-widget mb-47">
+            <div class="single-blog-banner">
+                <a href="blog-details.html" id="blog"><img src="~/assets/img/blog/blog-img.jpg" alt="blog"></a>
+                <h2>best<br> eductaion<br> theme</h2>
+            </div>
+        </div>
+        <div class="single-blog-widget mb-47">
+            <h3>latest post</h3>
+            @foreach (Blog blog in Model.Blogs)
+                {
+                    <div class="single-post mb-30">
+                        <div class="single-post-img">
+                            <a href="blog-details.html">
+                                <img src="~/assets/img/blog/@blog.Image" style="width:95px!important; height:85px!important" alt="post">
+                                <div class="blog-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="single-post-content">
+                            <h4><a href="blog-details.html">@blog.Title.Substring(0,20)</a></h4>
+                            <p>By @blog.ByName  /  @blog.AddedTime.ToString("MMMM") @blog.AddedTime.Day, @blog.AddedTime.Year</p>
+                        </div>
+                    </div>
+                }
+        </div>
+        <div class="single-blog-widget">
+            <h3>tags</h3>
+            <div class="single-tag">
+                <a href="blog-details.html" class="mr-10 mb-10">course</a>
+                <a href="blog-details.html" class="mr-10 mb-10">education</a>
+                <a href="blog-details.html" class="mb-10">teachers</a>
+                <a href="blog-details.html" class="mr-10">learning</a>
+                <a href="blog-details.html" class="mr-10">university</a>
+                <a href="blog-details.html">events</a>
+            </div>
+        </div>
+    </div>
+</div>
