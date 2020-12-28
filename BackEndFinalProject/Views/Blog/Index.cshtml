@@ -24,15 +24,23 @@
 <div class="blog-area pt-150 pb-150">
     <div class="container">
         <div class="row">
-            @await Component.InvokeAsync("Blog", 9)
+            @await Component.InvokeAsync("Blog", 4)
         </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="pagination">
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        @for (int i = 1; i <= ViewBag.BlogCount; i++)
+                        {
+                            if (i == ViewBag.Page)
+                            {
+                                <li class="disabled"><a style="background: #2C2B5E; color:#ffffff">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a asp-controller="Blog" asp-action="Index" asp-route-page="@i">@i</a></li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>

@@ -16,10 +16,16 @@ namespace BackEndFinalProject.ViewComponents
         {
             _context = context;
         }
-        public async Task<IViewComponentResult> InvokeAsync(int? take)
+        public async Task<IViewComponentResult> InvokeAsync(int take)
         {
-            List<Blog> blogs = _context.Blogs.Where(c => c.IsDeleted == false).Include(c => c.BlogDetail).Take((int)take).ToList();
-            return View(await Task.FromResult(blogs));
+            int? page = ViewBag.Page;
+            if (page == null)
+            {
+                List<Blog> blogs = _context.Blogs.Where(b => b.IsDeleted == false).Take(take).ToList();
+                return View(await Task.FromResult(blogs));
+            }
+            List<Blog> blogs2 = _context.Blogs.Where(b=>b.IsDeleted==false).Skip(((int)page - 1) * take).Take(take).ToList();
+            return View(await Task.FromResult(blogs2));
         }
     
     }
