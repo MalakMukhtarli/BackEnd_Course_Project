@@ -24,6 +24,9 @@ namespace BackEndFinalProject.DAL
         public DbSet<CategoryBlog> CategoryBlogs { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherDetail> TeacherDetails { get; set; }
+        public DbSet<Notice> Notices { get; set; }
+        public DbSet<HomeVideo> HomeVideos { get; set; }
+        public DbSet<About> Abouts { get; set; }
 
         // # # # # # # # # # # # # # # # Data # # # # # # # # # # # # # # # # # # # //
         #region Data in the Database
@@ -1058,6 +1061,78 @@ namespace BackEndFinalProject.DAL
                         Innovation = 79,
                         Communication = 73,
                         TeacherId =12
+                    }
+                    );
+
+            modelBuilder.Entity<Notice>().HasData(
+                    new Notice
+                    {
+                        Id = 1,
+                        AddedTime = new DateTime(2020, 7, 16),
+                        Content = "1 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    },
+                    new Notice
+                    {
+                        Id = 2,
+                        AddedTime = new DateTime(2020, 7, 15),
+                        Content = "2 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    },
+                    new Notice
+                    {
+                        Id = 3,
+                        AddedTime = new DateTime(2020, 7, 14),
+                        Content = "3 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    },
+                    new Notice
+                    {
+                        Id = 4,
+                        AddedTime = new DateTime(2020, 7, 13),
+                        Content = "4 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    },
+                    new Notice
+                    {
+                        Id = 5,
+                        AddedTime = new DateTime(2020, 7, 12),
+                        Content = "5 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    },
+                    new Notice
+                    {
+                        Id = 6,
+                        AddedTime = new DateTime(2020, 7, 11),
+                        Content = "6 - I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete",
+                        IsDeleted = false
+                    }
+                    );
+
+            modelBuilder.Entity<HomeVideo>().HasData(
+                    new HomeVideo
+                    {
+                        Id = 1,
+                        VideoLink = "https://www.youtube.com/watch?v=to6Ghf8UL7o"
+                    }
+                    );
+
+            modelBuilder.Entity<About>().HasData(
+                    new About
+                    {
+                        Id = 1,
+                        Image = "about.png",
+                        Title= "<span>EDUHOME</span> the best education theme for you",
+                        Content= "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>" +
+                        "<p class='hidden-sm'>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>"
+                    },
+                    new About
+                    {
+                        Id = 2,
+                        Image = "about.png",
+                        Title = "WELCOME TO <span>EDUHOME</span>",
+                        Content = "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>" +
+                        "<p class='hidden-sm'>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>"
                     }
                     );
         }

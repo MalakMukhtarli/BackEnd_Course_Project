@@ -25,7 +25,8 @@ namespace BackEndFinalProject.Controllers
             HomeVM homeVM = new HomeVM
             {
                 Sliders = _context.Sliders.ToList(),
-                Categories = _context.Categories.ToList()
+                Notices = _context.Notices.Where(n=>n.IsDeleted==false).OrderByDescending(n=>n.AddedTime).ToList(),
+                HomeVideos = _context.HomeVideos.FirstOrDefault()
             };
             return View(homeVM);
         }

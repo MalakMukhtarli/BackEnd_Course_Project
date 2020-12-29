@@ -64,7 +64,7 @@
                     <h3>TAKE A VIDEO TOUR</h3>
                     <div class="notice-video">
                         <div class="video-icon video-hover">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=to6Ghf8UL7o">
+                            <a class="video-popup" href="@Model.HomeVideos.VideoLink">
                                 <i class="zmdi zmdi-play"></i>
                             </a>
                         </div>
@@ -75,30 +75,13 @@
                 <div class="notice-left-wrapper">
                     <h3>notice board</h3>
                     <div class="notice-left">
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
+                        @foreach (Notice notice in Model.Notices)
+                        {
+                            <div class="single-notice-left mb-23 pb-20">
+                                <h4>@notice.AddedTime.Day, @notice.AddedTime.ToString("MMMM") @notice.AddedTime.Year</h4>
+                                <p>@notice.Content </p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -107,25 +90,7 @@
 </section>
 <!-- Notice End -->
 <!-- About Start -->
-<div class="about-area pb-135 pt-130 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6">
-                <div class="about-content">
-                    <h2><span>EDUHOME</span> the best education theme for you</h2>
-                    <p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>
-                    <p class="hidden-sm">I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>
-                    <a class="default-btn" href="about.html">buy now</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="about-img">
-                    <img src="~/assets/img/about/about.png" alt="about">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@await Component.InvokeAsync("About", 1)
 <!-- About End -->
 <!-- Event Area Start -->
 <div class="event-area three text-center pt-100 pb-115">
