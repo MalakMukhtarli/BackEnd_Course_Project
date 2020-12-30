@@ -27,6 +27,8 @@ namespace BackEndFinalProject.DAL
         public DbSet<Notice> Notices { get; set; }
         public DbSet<HomeVideo> HomeVideos { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Bio> Bios { get; set; }
 
         // # # # # # # # # # # # # # # # Data # # # # # # # # # # # # # # # # # # # //
         #region Data in the Database
@@ -1133,6 +1135,52 @@ namespace BackEndFinalProject.DAL
                         Title = "WELCOME TO <span>EDUHOME</span>",
                         Content = "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>" +
                         "<p class='hidden-sm'>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>"
+                    }
+                    );
+
+            modelBuilder.Entity<Testimonial>().HasData(
+                    new Testimonial
+                    {
+                        Id = 1,
+                        Image = "testimonial.jpg",
+                        Description = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual",
+                        FullName = "David Morgan",
+                        Note= "Student, CSE"
+                    },
+                    new Testimonial
+                    {
+                        Id = 2,
+                        Image = "testimonial.jpg",
+                        Description = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual",
+                        FullName = "David Morgan",
+                        Note = "Student, CSE"
+                    },
+                    new Testimonial
+                    {
+                        Id = 3,
+                        Image = "testimonial.jpg",
+                        Description = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual",
+                        FullName = "David Morgan",
+                        Note = "Student, CSE"
+                    }
+                    );
+
+            modelBuilder.Entity<Bio>().HasData(
+                    new Bio
+                    {
+                        Id = 1,
+                        SmallLogo = "logo2.png",
+                        BigLogo = "footer-logo.png",
+                        About = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and give you a coete account of the system.",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        Address = "City, Roadno 785 New York",
+                        Phone = "+880  548  986  898  87",
+                        AdditionalPhone = "+880  659  785  658  98",
+                        Email = "info@eduhome.com",
+                        Webpage = "www.eduhome.com"
                     }
                     );
         }

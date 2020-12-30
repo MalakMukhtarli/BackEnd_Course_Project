@@ -4,14 +4,16 @@ using BackEndFinalProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackEndFinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201229183259_CreateTestimonialTable")]
+    partial class CreateTestimonialTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,80 +59,6 @@ namespace BackEndFinalProject.Migrations
                             Content = "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p><p class='hidden-sm'>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>",
                             Image = "about.png",
                             Title = "WELCOME TO <span>EDUHOME</span>"
-                        });
-                });
-
-            modelBuilder.Entity("BackEndFinalProject.Models.Bio", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdditionalPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("BigLogo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pinterest")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SmallLogo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
-
-                    b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vimeo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Webpage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            About = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and give you a coete account of the system.",
-                            AdditionalPhone = "+880  659  785  658  98",
-                            Address = "City, Roadno 785 New York",
-                            BigLogo = "footer-logo.png",
-                            Email = "info@eduhome.com",
-                            Facebook = "#",
-                            Phone = "+880  548  986  898  87",
-                            Pinterest = "#",
-                            SmallLogo = "logo2.png",
-                            Twitter = "#",
-                            Vimeo = "#",
-                            Webpage = "www.eduhome.com"
                         });
                 });
 
