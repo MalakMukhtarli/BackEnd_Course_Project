@@ -46,11 +46,6 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Slider slider)
         {
             #region File
-            //if (!ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError("", "Butun xanalari doldurun");
-            //    return View();
-            //}
             if (slider.Photo == null || slider.Title == null || slider.Subtitle == null)
             {
                 ModelState.AddModelError("", "Butun xanalari doldurun");
@@ -83,6 +78,5 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
