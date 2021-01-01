@@ -32,7 +32,8 @@ namespace BackEndFinalProject.Controllers
         }
         public IActionResult Search(string search)
         {
-            IEnumerable<Event> model = _context.Events.Where(c => c.Title.Contains(search)).OrderByDescending(p => p.Id).Take(8);
+            IEnumerable<Event> model = _context.Events.Where(e => e.IsDeleted == false && e.Title.Contains(search))
+                .OrderByDescending(e => e.Id).Take(8);
             return PartialView("_SearchEventPartial", model);
         }
     }

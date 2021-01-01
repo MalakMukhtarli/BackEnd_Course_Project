@@ -28,7 +28,6 @@ namespace BackEndFinalProject.Controllers
             Course courses = _context.Courses.Where(c => c.IsDeleted == false)
                 .Include(cd => cd.CourseDetail).FirstOrDefault(c => c.Id == id);
             if (courses == null) return NotFound();
-
             return View(courses);
         }
 
@@ -37,5 +36,6 @@ namespace BackEndFinalProject.Controllers
             IEnumerable<Course> model = _context.Courses.Where(c => c.Name.Contains(search)).OrderByDescending(p => p.Id).Take(8);
             return PartialView("_SearchCoursePartial", model);
         }
+
     }
 }

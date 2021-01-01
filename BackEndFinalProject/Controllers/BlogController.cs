@@ -35,7 +35,8 @@ namespace BackEndFinalProject.Controllers
         }
         public IActionResult Search(string search)
         {
-            IEnumerable<Blog> model = _context.Blogs.Where(c => c.Title.Contains(search)).OrderByDescending(p => p.Id).Take(8);
+            IEnumerable<Blog> model = _context.Blogs.Where(b => b.IsDeleted == false && b.Title.Contains(search))
+                .OrderByDescending(b => b.Id).Take(8);
             return PartialView("_SearchBlogPartial", model);
         }
     }

@@ -25,6 +25,18 @@ namespace BackEndFinalProject.Controllers
             List<Slider> sliders = _context.Sliders.ToList();
             return View(sliders);
         }
+        public IActionResult Search(string search)
+        {
+            HomeVM homeVM = new HomeVM
+            {
+                Events = _context.Events.Where(e =>e.IsDeleted==false && e.Title.Contains(search)).OrderByDescending(e => e.Id).Take(8),
+                Courses = _context.Courses.Where(c => c.IsDeleted==false && c.Name.Contains(search)).OrderByDescending(c => c.Id).Take(8),
+                Teachers = _context.Teachers.Where(t => t.IsDeleted==false && (t.Name.Contains(search) || t.Surname.Contains(search)))
+                 .OrderByDescending(t => t.Id).Take(8),
+                Blogs = _context.Blogs.Where(b => b.IsDeleted==false && b.Title.Contains(search)).OrderByDescending(b => b.Id).Take(8)
+            };
+            return PartialView("_SearchHomePartial", homeVM);
+        }
 
         public IActionResult Privacy()
         {

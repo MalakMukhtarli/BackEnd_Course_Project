@@ -17,7 +17,7 @@ namespace BackEndFinalProject.Models
         public string Title { get; set; }
         [MaxLength(250)]
         public string Subtitle { get; set; }
-        [NotMapped, Required]
+        [NotMapped]
         public IFormFile Photo { get; set; }
     }
 }

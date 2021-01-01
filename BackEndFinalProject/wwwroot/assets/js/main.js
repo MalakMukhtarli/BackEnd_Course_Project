@@ -133,6 +133,8 @@ $(".notice-left").niceScroll({
 
 
 $(document).ready(function () {
+    let path = window.location.pathname;
+    let contrPath = path.substring(1, path.length)
     $(document).on('keyup', '#search-input', function (e) {
         e.preventDefault();
         let searchInput = $(this).val().trim();
@@ -140,7 +142,7 @@ $(document).ready(function () {
         if (searchInput.length > 0) {
 
             $.ajax({
-                url: "/Course/Search?search=" + searchInput,
+                url: `/${contrPath}/Search?search=` + searchInput,
                 type: "Get",
                 success: function (res) {
                     $("#search-list").append(res);
@@ -149,3 +151,5 @@ $(document).ready(function () {
         }
     })
 })
+
+

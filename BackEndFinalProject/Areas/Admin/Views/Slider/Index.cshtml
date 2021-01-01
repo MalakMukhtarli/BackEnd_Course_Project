@@ -57,7 +57,13 @@
                         {
                             <tr>
                                 <td class="py-1">
-                                    <img src="~/img/@Model.ElementAt(0).Image" style="width:120px; height:80px" />
+                                    <img src="~/assets/img/slider/@Model.ElementAt(0).Image" style="width:120px; height:80px" />
+                                </td>
+                                <td class="py-1">
+                                    <img src="~/img/@Html.Raw(Model.ElementAt(0).Title)" style="width:120px; height:80px" />
+                                </td>
+                                <td class="py-1">
+                                    <img src="~/img/@Html.Raw(Model.ElementAt(0).Subtitle)" style="width:120px; height:80px" />
                                 </td>
                                 <td>
                                     <a asp-controller="Slider" asp-action="Detail" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-rounded btn-outline-info">

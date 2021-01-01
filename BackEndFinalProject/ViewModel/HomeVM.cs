@@ -8,6 +8,9 @@ namespace BackEndFinalProject.ViewModel
 {
     public class HomeVM
     {
-        public List<Slider> Sliders { get; set; }
+        public IEnumerable<Teacher> Teachers { get; set; }
+        public IEnumerable<Course> Courses { get; set; }
+        public IEnumerable<Event> Events { get; set; }
+        public IEnumerable<Blog> Blogs { get; set; }
     }
 }

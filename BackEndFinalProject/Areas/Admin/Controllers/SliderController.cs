@@ -1,6 +1,7 @@
 ﻿using BackEndFinalProject.DAL;
+using BackEndFinalProject.Extensions;
+using BackEndFinalProject.Helpers;
 using BackEndFinalProject.Models;
-using FiorelloFrontToBack.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,13 +35,13 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             if (slider == null) return NotFound();
             return View(slider);
         }
-        // GET: SliderController/Create
+        // GET: Slider/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SliderController/Create
+        // POST: Slider/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Slider slider)
@@ -75,6 +76,116 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             await _context.Sliders.AddAsync(slider);
 
             #endregion
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Slider/Update/5
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null) return NotFound();
+            Slider slider = await _context.Sliders.FindAsync(id);
+            if (slider == null) return NotFound();
+            return View(slider);
+        }
+        // POST: Slider/Update/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Slider slider)
+        {
+            if (slider.Photo == null && slider.Title == null && slider.Subtitle == null)
+            {
+                ModelState.AddModelError("", "Yenilenecek data tapilmadi");
+                return View();
+            }
+            if (id == null) return NotFound();
+            if (slider.Photo != null)
+            {
+                bool isExist = slider.Photo.IsImage();
+                if (!isExist)
+                {
+                    ModelState.AddModelError("Photo", "Zehmet olmasa shekil tipinde file sechin");
+                    return View();
+                }
+                bool photoLength = slider.Photo.PhotoLength(200);
+                if (!photoLength)
+                {
+                    ModelState.AddModelError("Photo", "Zehmet olmasa sheklin olchusu 200kb kechmesin");
+                    return View();
+                }
+            }
+            
+            Slider SliderSelected = await _context.Sliders.FindAsync(id);
+            if (SliderSelected == null) return NotFound();
+            
+            if (slider.Photo != null)
+            {
+                string folder = Path.Combine("assets", "img", "slider");
+                bool isDeleted = Helper.DeletedPhoto(_env.WebRootPath, folder, SliderSelected);
+                if (!isDeleted)
+                {
+                    ModelState.AddModelError("Photo", "Sistemde bash veren bir problemle bagli file siline bilmedi");
+                    return View();
+                }
+            }
+                
+            if (slider.Title != null)
+            {
+                SliderSelected.Title = slider.Title;
+            }
+            if (slider.Subtitle != null)
+            {
+                SliderSelected.Subtitle = slider.Subtitle;
+            }
+            if (slider.Photo != null)
+            {
+                string folder = Path.Combine("assets", "img", "slider");
+                SliderSelected.Image = await slider.Photo.AddImageAsync(_env.WebRootPath, folder);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Slider/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+            Slider slider = await _context.Sliders.FindAsync(id);
+            if (slider == null) return NotFound();
+            int sliderCount = _context.Sliders.Count();
+            if (sliderCount <= 1)
+            {
+                ModelState.AddModelError("", "Sonuncu slideri sile bilmersiniz!");
+                return View(slider);
+            }
+            return View(slider);
+        }
+
+        // POST: Slider/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null) return NotFound();
+            Slider slider = await _context.Sliders.FindAsync(id);
+            if (slider == null) return NotFound();
+            int sliderCount = _context.Sliders.Count();
+            if (sliderCount <= 1)
+            {
+                ModelState.AddModelError("", "Sonuncu slideri sile bilmersiniz!");
+                return View(slider);
+            }
+            _context.Sliders.Remove(slider);
+            string folder = Path.Combine("assets", "img", "slider");
+            bool isDeleted = Helper.DeletedPhoto(_env.WebRootPath, folder, slider);
+            if (!isDeleted)
+            {
+                ModelState.AddModelError("", "Sistemde bash veren bir problemle bagli file siline bilmedi");
+                return View();
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
