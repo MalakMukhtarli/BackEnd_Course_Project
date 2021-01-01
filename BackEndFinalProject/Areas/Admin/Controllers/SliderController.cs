@@ -75,13 +75,11 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 return View(slider);
             }
 
-
             string folder = Path.Combine("assets", "img", "slider");
             slider.Image = await slider.Photo.AddImageAsync(_env.WebRootPath, folder);
             await _context.Sliders.AddAsync(slider);
 
             #endregion
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
