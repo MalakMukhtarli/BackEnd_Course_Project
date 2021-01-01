@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Blog>
+@foreach (Blog blog in Model)
+{
+    <li><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">@blog.Title</a></li>
+}

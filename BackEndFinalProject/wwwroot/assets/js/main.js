@@ -1,3 +1,5 @@
+
+
 (function ($) {
 "use strict";  
     
@@ -128,3 +130,22 @@ $(".notice-left").niceScroll({
         });
 
 })(jQuery);	
+
+
+$(document).ready(function () {
+    $(document).on('keyup', '#search-input', function (e) {
+        e.preventDefault();
+        let searchInput = $(this).val().trim();
+        $("#search-list li").remove();
+        if (searchInput.length > 0) {
+
+            $.ajax({
+                url: "/Course/Search?search=" + searchInput,
+                type: "Get",
+                success: function (res) {
+                    $("#search-list").append(res);
+                }
+            });
+        }
+    })
+})

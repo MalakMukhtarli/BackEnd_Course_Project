@@ -22,11 +22,8 @@ namespace BackEndFinalProject.Controllers
 
         public IActionResult Index()
         {
-            HomeVM homeVM = new HomeVM
-            {
-                Sliders = _context.Sliders.ToList(),
-            };
-            return View(homeVM);
+            List<Slider> sliders = _context.Sliders.ToList();
+            return View(sliders);
         }
 
         public IActionResult Privacy()

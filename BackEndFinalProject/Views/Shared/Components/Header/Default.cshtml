@@ -65,11 +65,15 @@
                                 </ul>
                                 <div class="search">
                                     <div class="search-form">
-                                        <form id="search-form" action="#">
-                                            <input type="search" placeholder="Search here..." name="search" />
-                                            <button type="submit">
-                                                <span><i class="fa fa-search"></i></span>
-                                            </button>
+                                        <form id="search-form" method="post">
+                                            <input type="search" id="search-input" placeholder="Search here..." name="search" />
+                                            <input type="hidden" name="hidden" value="@Model" />
+                                            <span id="search-button">
+                                                <span class="icon"><i class="fa fa-search"></i></span>
+                                            </span>
+                                            <ul id="search-list" style="color:whitesmoke !important">
+                                                
+                                            </ul>
                                         </form>
                                     </div>
                                 </div>

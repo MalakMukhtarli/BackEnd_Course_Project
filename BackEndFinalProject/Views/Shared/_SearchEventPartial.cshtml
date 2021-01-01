@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Event>
+@foreach (Event evnt in Model)
+{
+    <li><a asp-controller="Event" asp-action="Detail" asp-route-id="@evnt.Id">@evnt.Title</a></li>
+}

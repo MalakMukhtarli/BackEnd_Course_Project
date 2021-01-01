@@ -33,5 +33,10 @@ namespace BackEndFinalProject.Controllers
             
             return View(blog);
         }
+        public IActionResult Search(string search)
+        {
+            IEnumerable<Blog> model = _context.Blogs.Where(c => c.Title.Contains(search)).OrderByDescending(p => p.Id).Take(8);
+            return PartialView("_SearchBlogPartial", model);
+        }
     }
 }

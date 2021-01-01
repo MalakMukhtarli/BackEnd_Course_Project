@@ -31,5 +31,11 @@ namespace BackEndFinalProject.Controllers
 
             return View(courses);
         }
+
+        public IActionResult Search(string search)
+        {
+            IEnumerable<Course> model = _context.Courses.Where(c => c.Name.Contains(search)).OrderByDescending(p => p.Id).Take(8);
+            return PartialView("_SearchCoursePartial", model);
+        }
     }
 }

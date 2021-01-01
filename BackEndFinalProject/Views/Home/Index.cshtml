@@ -1,4 +1,4 @@
-﻿@model HomeVM
+﻿@model List<Slider>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -6,7 +6,7 @@
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area three">
     <div class="slider-owl owl-theme owl-carousel">
-        @foreach (Slider slider in Model.Sliders)
+        @foreach (Slider slider in Model)
         {
             <!-- Start Slingle Slide -->
             <div class="single-slide item" style="background-image: url(assets/img/slider/@slider.Image)">

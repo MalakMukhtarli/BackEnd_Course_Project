@@ -30,5 +30,10 @@ namespace BackEndFinalProject.Controllers
 
             return View(evnt);
         }
+        public IActionResult Search(string search)
+        {
+            IEnumerable<Event> model = _context.Events.Where(c => c.Title.Contains(search)).OrderByDescending(p => p.Id).Take(8);
+            return PartialView("_SearchEventPartial", model);
+        }
     }
 }

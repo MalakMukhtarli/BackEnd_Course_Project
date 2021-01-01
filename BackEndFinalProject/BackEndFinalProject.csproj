@@ -12,6 +12,44 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Admin\css\maps\style.css.map" />
+    <None Include="wwwroot\Admin\fonts\.DS_Store" />
+    <None Include="wwwroot\Admin\fonts\Roboto\.DS_Store" />
+    <None Include="wwwroot\Admin\fonts\Roboto\Roboto-Black.woff2" />
+    <None Include="wwwroot\Admin\fonts\Roboto\Roboto-Bold.woff2" />
+    <None Include="wwwroot\Admin\fonts\Roboto\Roboto-Light.woff2" />
+    <None Include="wwwroot\Admin\fonts\Roboto\Roboto-Medium.woff2" />
+    <None Include="wwwroot\Admin\fonts\Roboto\Roboto-Regular.woff2" />
+    <None Include="wwwroot\Admin\images\.DS_Store" />
+    <None Include="wwwroot\Admin\images\auth\.DS_Store" />
+    <None Include="wwwroot\Admin\images\faces\.DS_Store" />
+    <None Include="wwwroot\Admin\images\logo-mini.svg" />
+    <None Include="wwwroot\Admin\images\logo.svg" />
+    <None Include="wwwroot\Admin\js\.DS_Store" />
+    <None Include="wwwroot\Admin\js\chart.js" />
+    <None Include="wwwroot\Admin\js\Chart.min.js" />
+    <None Include="wwwroot\Admin\js\dashboard.js" />
+    <None Include="wwwroot\Admin\js\data-table.js" />
+    <None Include="wwwroot\Admin\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\Admin\js\documentation.js" />
+    <None Include="wwwroot\Admin\js\file-upload.js" />
+    <None Include="wwwroot\Admin\js\hoverable-collapse.js" />
+    <None Include="wwwroot\Admin\js\jquery.dataTables.js" />
+    <None Include="wwwroot\Admin\js\off-canvas.js" />
+    <None Include="wwwroot\Admin\js\tabs.js" />
+    <None Include="wwwroot\Admin\js\template.js" />
+    <None Include="wwwroot\Admin\vendors\.DS_Store" />
+    <None Include="wwwroot\Admin\vendors\base\bootstrap.min.js.map" />
+    <None Include="wwwroot\Admin\vendors\base\vendor.bundle.base.js" />
+    <None Include="wwwroot\Admin\vendors\chart.js\Chart.min.js" />
+    <None Include="wwwroot\Admin\vendors\datatables.net-bs4\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\Admin\vendors\datatables.net\jquery.dataTables.js" />
+    <None Include="wwwroot\Admin\vendors\mdi\css\materialdesignicons.min.css.map" />
+    <None Include="wwwroot\Admin\vendors\mdi\fonts\materialdesignicons-webfont.svg" />
+    <None Include="wwwroot\Admin\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
@@ -19,6 +57,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

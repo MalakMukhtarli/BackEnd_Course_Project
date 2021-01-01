@@ -29,5 +29,10 @@ namespace BackEndFinalProject.Controllers
             if (teacher == null) return NotFound();
             return View(teacher);
         }
+        public IActionResult Search(string search)
+        {
+            IEnumerable<Teacher> model = _context.Teachers.Where(t => t.Name.Contains(search)).OrderByDescending(t => t.Id).Take(8);
+            return PartialView("_SearchTeacherPartial", model);
+        }
     }
 }

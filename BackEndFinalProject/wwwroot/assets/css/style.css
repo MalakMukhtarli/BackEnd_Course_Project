@@ -881,8 +881,8 @@ textarea {
 }
 #search-form > input::-moz-placeholder {color: #252525;} 
 #search-form > input::-webkit-input-placeholder {color: #252525;}
-#search-form > button {
-  background: #2C2B5E none repeat scroll 0 0;
+#search-form > span {
+  background: #2C2B5E none repeat 0 0;
   border: 2px solid #c5c596;
   color: #ffffff;
   font-size: 15px;
@@ -892,10 +892,14 @@ textarea {
   right: 0;
   top: 0;
   width: 43px;
+  text-align: center;
 }
-#search-form > button:hover{
+#search-form > span:hover{
     background: #EC1C23;
     border: 2px solid #939369;
+}
+#search-form > span > .icon {
+    line-height: 32px;
 }
 .search-menu {
     background: #2c2b5e none repeat scroll 0 0;
