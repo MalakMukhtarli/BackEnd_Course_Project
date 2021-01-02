@@ -32,12 +32,24 @@
                     <p><span>mail me : </span>@Model.TeacherDetail.Mail</p>
                     <p><span>make a call : </span>@Model.TeacherDetail.Phone</p>
                     <p><span>skype : </span> @Model.TeacherDetail.Skype</p>
-                    <div>
-                        <p>@Model.Facebook</p>
-                        <p>@Model.Pinterest</p>
-                        <p>@Model.Vimeo</p>
-                        <p>@Model.Twitter</p>
-                    </div>
+                    <ul>
+                        @if (Model.Facebook != null)
+                        {
+                            <li><a href="@Model.Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                        }
+                        @if (Model.Pinterest != null)
+                        {
+                            <li><a href="@Model.Pinterest"><i class="zmdi zmdi-pinterest"></i></a></li>
+                        }
+                        @if (Model.Vimeo != null)
+                        {
+                            <li><a href="@Model.Vimeo"><i class="zmdi zmdi-vimeo"></i></a></li>
+                        }
+                        @if (Model.Twitter != null)
+                        {
+                            <li><a href="@Model.Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
+                        }
+                    </ul>
                 </div>
             </div>
             <div class="col-md-9 col-sm-8">

@@ -17,7 +17,7 @@ namespace BackEndFinalProject.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync(int take)
         {
-            List<Teacher> teachers = _context.Teachers.Take(take).ToList();
+            List<Teacher> teachers = _context.Teachers.Where(t=>t.IsDeleted==false).Take(take).ToList();
             return View(await Task.FromResult(teachers));
         }
     }

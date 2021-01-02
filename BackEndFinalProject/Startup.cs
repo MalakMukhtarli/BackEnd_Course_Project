@@ -1,4 +1,6 @@
 using BackEndFinalProject.DAL;
+using BackEndFinalProject.Helpers;
+using BackEndFinalProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,11 +29,28 @@ namespace BackEndFinalProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<AppUser, IdentityRole>(identityOptions => {
+                identityOptions.Password.RequiredLength = 8;
+                identityOptions.Password.RequiredUniqueChars = 1;
+                identityOptions.Password.RequireNonAlphanumeric = true;
+                identityOptions.Password.RequireLowercase = true;
+                identityOptions.Password.RequireUppercase = true;
+                identityOptions.Password.RequireDigit = true;
+
+                identityOptions.User.RequireUniqueEmail = true;
+
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                identityOptions.Lockout.MaxFailedAccessAttempts = 3;
+                identityOptions.Lockout.AllowedForNewUsers = true;
+
+            }).AddDefaultTokenProviders()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddErrorDescriber<AzIdentityErrorDescriber>();
+
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionString:Default"]);
             });
-            //services.AddIdentity<AppUser, IdentityRole>()
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
