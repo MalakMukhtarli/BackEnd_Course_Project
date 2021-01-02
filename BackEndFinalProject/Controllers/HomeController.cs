@@ -27,13 +27,21 @@ namespace BackEndFinalProject.Controllers
         }
         public IActionResult Search(string search)
         {
+            IEnumerable<Event> events = _context.Events.Where(e => e.IsDeleted == false && e.Title.Contains(search))
+                .OrderByDescending(e => e.Id).Take(8);
+            IEnumerable<Teacher> teachers = _context.Teachers.Where(t => t.IsDeleted == false && (t.Name.Contains(search) || t.Surname.Contains(search)))
+                 .OrderByDescending(t => t.Id).Take(8);
+            IEnumerable<Course> courses = _context.Courses.Where(c => c.IsDeleted == false && c.Name.Contains(search))
+                .OrderByDescending(c => c.Id).Take(8);
+            IEnumerable<Blog> blogs = _context.Blogs.Where(b => b.IsDeleted == false && b.Title.Contains(search))
+                .OrderByDescending(b => b.Id).Take(8);
+           
             HomeVM homeVM = new HomeVM
             {
-                Events = _context.Events.Where(e =>e.IsDeleted==false && e.Title.Contains(search)).OrderByDescending(e => e.Id).Take(8),
-                Courses = _context.Courses.Where(c => c.IsDeleted==false && c.Name.Contains(search)).OrderByDescending(c => c.Id).Take(8),
-                Teachers = _context.Teachers.Where(t => t.IsDeleted==false && (t.Name.Contains(search) || t.Surname.Contains(search)))
-                 .OrderByDescending(t => t.Id).Take(8),
-                Blogs = _context.Blogs.Where(b => b.IsDeleted==false && b.Title.Contains(search)).OrderByDescending(b => b.Id).Take(8)
+                Events=events,
+                Teachers=teachers,
+                Courses=courses,
+                Blogs=blogs
             };
             return PartialView("_SearchHomePartial", homeVM);
         }

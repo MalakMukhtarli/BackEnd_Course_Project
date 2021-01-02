@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title">Slider Table</h4>
-                <a asp-controller="Slider" asp-action="Create" class="btn btn-rounded btn-outline-success">
+                <a asp-controller="Teacher" asp-action="Create" class="btn btn-rounded btn-outline-success">
                     <i class="mdi mdi-plus-circle-outline" style="font-size: 15px;"> Add Teacher</i>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                                         <div>@teacher.Name @teacher.Surname</div>
                                     </td>
                                     <td class="py-1">
-                                        <p>@Html.Raw(teacher.Position)</p>
+                                        <p>@teacher.Position</p>
                                     </td>
                                     <td>
                                         <a asp-controller="Teacher" asp-action="Detail" asp-route-id="@teacher.Id" class="btn btn-rounded btn-outline-info">
