@@ -53,6 +53,7 @@ namespace BackEndFinalProject.Extensions
     public enum Roles
     {
         Admin,
-        Member
+        Simple,
+        CourseModerator
     }
 }
