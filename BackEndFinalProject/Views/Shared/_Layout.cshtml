@@ -44,11 +44,13 @@
                         <p>I must explain to you how all this mistaken idea </p>
                     </div>
                     <div class="newsletter-form mc_embed_signup">
-                        <form action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <form action="/Account/Subscribe" method="post" asp-antiforgery="true" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"  novalidate>
                             <div id="mc_embed_signup_scroll" class="mc-form">
-                                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+                                <input type="text" name="Email" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address"/>
                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+                                
+                                <div class="mc-news" aria-hidden="true">
+                                </div>
                                 <button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe"><span>subscribe</span></button>
                             </div>
                         </form>
@@ -69,7 +71,8 @@
     @await Component.InvokeAsync("Footer")
     <!-- Footer End -->
 
-    <script src="~/assets/js/vendor/jquery-1.12.0.min.js"></script>
+    @*<script src="~/assets/js/vendor/jquery-1.12.0.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/jquery.meanmenu.js"></script>
     <script src="~/assets/js/jquery.magnific-popup.js"></script>

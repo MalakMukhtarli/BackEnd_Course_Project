@@ -1,0 +1,66 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "Activated";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <form method="post">
+            <div class="card-body">
+                <h4 class="card-title">Users</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> Name </th>
+                                <th> Surname </th>
+                                <th> Email </th>
+                                <th> IsDeleted </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> @Model.Name </td>
+                                <td> @Model.Surname </td>
+                                <td> @Model.Email </td>
+                                @if (Model.IsDeleted)
+                                {
+                                    <td style="color:red">
+                                        Disabled
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="color:forestgreen">
+                                        Enabled
+                                    </td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-3">
+                    <h4 class="text-danger">Are you sure?</h4>
+                    @if (ViewBag.UserId != Model.Id)
+                    {
+                        if (Model.IsDeleted)
+                        {
+                            <button type="submit" asp-route-id="@Model.Id" class="btn btn-outline-success">
+                                Enable
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+                                Disable
+                            </button>
+                        }
+                    }
+                    <a class="btn btn-outline-secondary" asp-controller="User" asp-action="Index">Go Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

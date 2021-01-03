@@ -35,7 +35,6 @@ namespace BackEndFinalProject.Controllers
                 .OrderByDescending(c => c.Id).Take(8);
             IEnumerable<Blog> blogs = _context.Blogs.Where(b => b.IsDeleted == false && b.Title.Contains(search))
                 .OrderByDescending(b => b.Id).Take(8);
-           
             HomeVM homeVM = new HomeVM
             {
                 Events=events,

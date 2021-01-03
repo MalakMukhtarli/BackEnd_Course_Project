@@ -1,0 +1,92 @@
+﻿@model List<UserVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Categories</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Name </th>
+                            <th> Surname </th>
+                            <th> Email </th>
+                            <th> Username </th>
+                            <th> Role </th>
+                            <th> IsDeleted </th>
+                            <th> Settings </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (UserVM user in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @user.Name
+                                </td>
+                                <td>
+                                    @user.Surname
+                                </td>
+                                <td>
+                                    @user.Email
+                                </td>
+                                <td>
+                                    @user.Username
+                                </td>
+                                <td>
+                                    @user.Role
+                                </td>
+                                @if (user.IsDeleted)
+                                {
+                                    <td style="color:red">
+                                        Disabled
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="color:forestgreen">
+                                        Enabled
+                                    </td>
+                                }
+                                <td>
+                                    @if (user.IsDeleted)
+                                    {
+                                        <a asp-controller="User" asp-action="Activated" asp-route-id="@user.Id" class="btn btn-outline-success">
+                                            Enable
+                                        </a>
+
+                                    }
+                                    else
+                                    {
+                                        if (User.Identity.Name != user.Username)
+                                        {
+                                            <a asp-controller="User" asp-action="Activated" asp-route-id="@user.Id" class="btn btn-outline-danger">
+                                                Disable
+                                            </a>
+                                        }
+
+                                    }
+
+                                    <a asp-controller="User" asp-action="ResetPassword" asp-route-id="@user.Id" class="btn btn-outline-warning">
+                                        Reset Password
+                                    </a>
+                                    @if (User.Identity.Name != user.Username)
+                                    {
+                                        <a asp-controller="User" asp-action="ChangeRole" asp-route-id="@user.Id" class="btn btn-outline-secondary">
+                                            Change Role
+                                        </a>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

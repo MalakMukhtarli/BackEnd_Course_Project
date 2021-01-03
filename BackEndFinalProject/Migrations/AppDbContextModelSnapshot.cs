@@ -1218,6 +1218,22 @@ namespace BackEndFinalProject.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BackEndFinalProject.Models.Subscribe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("BackEndFinalProject.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")

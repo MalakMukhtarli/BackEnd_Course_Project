@@ -27,7 +27,7 @@ namespace BackEndFinalProject.ViewComponents
                 ViewBag.UserFullname = (await _userManager.FindByNameAsync(User.Identity.Name)).Name + " " +
                     (await _userManager.FindByNameAsync(User.Identity.Name)).Surname;
             }
-            Bio header = _context.Bios.FirstOrDefault();
+            Bio header =_context.Bios.FirstOrDefault();
             return View(await Task.FromResult(header));
         }
     }

@@ -1,6 +1,8 @@
 ﻿using BackEndFinalProject.DAL;
 using BackEndFinalProject.Extensions;
+using BackEndFinalProject.Helpers;
 using BackEndFinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 namespace BackEndFinalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class TeacherController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -69,6 +72,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
 
             #endregion
             await _context.SaveChangesAsync();
+            NotifyUserWithMail($"/Teacher/Detail/{teacher.Id}");
             return RedirectToAction(nameof(Index));
         }
 
@@ -81,7 +85,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             return View(teacher);
         }
 
-        // POST: Slider/Update/5
+        // POST: Teacher/Update/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int? id, Teacher teacher)
@@ -223,7 +227,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         }
 
         // GET: Teacher/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
             Teacher teacher = _context.Teachers.Where(t => t.IsDeleted == false)
@@ -248,6 +252,14 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             teacher.DeletedTime = DateTime.Now;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private async void NotifyUserWithMail(string controllerRoute)
+        {
+            var subscriber = _context.Subscribers.ToList().Select(x => x.Email);
+            var linkAdress = $"{Request.Scheme}://{Request.Host}{Request.PathBase}{controllerRoute}";
+
+            await EmailHelper.SendEmailToAllAsync(subscriber, "New event added!", linkAdress);
         }
     }
 }

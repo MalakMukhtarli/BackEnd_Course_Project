@@ -42,10 +42,11 @@ namespace BackEndFinalProject
                 identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 identityOptions.Lockout.MaxFailedAccessAttempts = 3;
                 identityOptions.Lockout.AllowedForNewUsers = true;
-
             }).AddDefaultTokenProviders()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddErrorDescriber<AzIdentityErrorDescriber>();
+
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddDbContext<AppDbContext>(options =>
             {

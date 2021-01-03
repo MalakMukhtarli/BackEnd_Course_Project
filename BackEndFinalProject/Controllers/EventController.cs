@@ -1,4 +1,5 @@
 ﻿using BackEndFinalProject.DAL;
+using BackEndFinalProject.Helpers;
 using BackEndFinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,6 @@ namespace BackEndFinalProject.Controllers
     public class EventController : Controller
     {
         private readonly AppDbContext _context;
-
         public EventController(AppDbContext context)
         {
             _context = context;

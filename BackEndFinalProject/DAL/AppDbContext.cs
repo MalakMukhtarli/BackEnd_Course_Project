@@ -31,11 +31,18 @@ namespace BackEndFinalProject.DAL
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Bio> Bios { get; set; }
 
+        public DbSet<Subscribe> Subscribers { get; set; }
+
         // # # # # # # # # # # # # # # # Data # # # # # # # # # # # # # # # # # # # //
         #region Data in the Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Subscribe>()
+                .HasIndex(x => x.Email)
+                .IsUnique(true);
+
             modelBuilder.Entity<Slider>().HasData(
                     new Slider
                     {
@@ -126,12 +133,12 @@ namespace BackEndFinalProject.DAL
                     },
                     new Course
                     {
-                         Id = 8,
-                         Image = "course8.jpg",
-                         Name = "social science",
-                         Description = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit," +
+                        Id = 8,
+                        Image = "course8.jpg",
+                        Name = "social science",
+                        Description = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit," +
                         " sed quia consequuntur magni dolores eos qui",
-                         IsDeleted = false
+                        IsDeleted = false
                     },
                     new Course
                     {
@@ -151,15 +158,15 @@ namespace BackEndFinalProject.DAL
                         CourseAbout = "1 - I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                         HowToApply = "1 - I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem accuntium mque laudantium perspiciatis unde omnis iste natuss",
                         Certification = "<p class='margin'>1 - I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem accuntium mque laudantium perspiciatis unde omnis iste natuss</p><p> I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human </p>",
-                        CourseStartDate= new DateTime(2020, 1, 25),
-                        CourseDuration=6,
-                        ClassDuration=3,
-                        SkillLevel= "ALL LEVEL",
-                        Language= "ENGLISH",
-                        StudentsCount=420,
-                        Assessment="self",
-                        Price= 789,
-                        CourseId=1
+                        CourseStartDate = new DateTime(2020, 1, 25),
+                        CourseDuration = 6,
+                        ClassDuration = 3,
+                        SkillLevel = "ALL LEVEL",
+                        Language = "ENGLISH",
+                        StudentsCount = 420,
+                        Assessment = "self",
+                        Price = 789,
+                        CourseId = 1
                     },
                     new CourseDetail
                     {
@@ -278,7 +285,7 @@ namespace BackEndFinalProject.DAL
                         CourseAbout = "I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                         HowToApply = "I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem accuntium mque laudantium perspiciatis unde omnis iste natuss",
                         Certification = "<p class='margin'>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem accuntium mque laudantium perspiciatis unde omnis iste natuss</p><p> I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human </p>",
-                        CourseStartDate= new DateTime(2020, 1, 25),
+                        CourseStartDate = new DateTime(2020, 1, 25),
                         CourseDuration = 6,
                         ClassDuration = 3,
                         SkillLevel = "ALL LEVEL",
@@ -296,8 +303,8 @@ namespace BackEndFinalProject.DAL
                         Id = 1,
                         Image = "event5.jpg",
                         Title = "ADVANCE PHP WORKSHOP",
-                        TimeStart = new DateTime(2020,7,20,9,30,0),
-                        TimeEnd = new DateTime(2020,7,20,16,45,0),
+                        TimeStart = new DateTime(2020, 7, 20, 9, 30, 0),
+                        TimeEnd = new DateTime(2020, 7, 20, 16, 45, 0),
                         Venue = "Cristal Centre, 254 New Yourk",
                         IsDeleted = false
                     },
@@ -387,13 +394,13 @@ namespace BackEndFinalProject.DAL
                     new EventDetail
                     {
                         Id = 1,
-                        Description= "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, " +
+                        Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, " +
                         "sed quia consequuntur magni dolores eos qui </p><p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.Nemo enim ipsam voluptatem </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>",
-                        SpeakerName= "Anthony Smith",
-                        SpeakerPosition= "CEO, Hastech",
-                        SpeakerImage= "speaker1.jpg",
-                        EventId=1
+                        SpeakerName = "Anthony Smith",
+                        SpeakerPosition = "CEO, Hastech",
+                        SpeakerImage = "speaker1.jpg",
+                        EventId = 1
                     },
                     new EventDetail
                     {
@@ -404,7 +411,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Lucy Rose",
                         SpeakerPosition = "Developer, STD",
                         SpeakerImage = "speaker2.jpg",
-                        EventId=2
+                        EventId = 2
                     },
                     new EventDetail
                     {
@@ -415,7 +422,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Anthony Smith",
                         SpeakerPosition = "CEO, Hastech",
                         SpeakerImage = "speaker1.jpg",
-                        EventId=3
+                        EventId = 3
                     },
                     new EventDetail
                     {
@@ -426,7 +433,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Lucy Rose",
                         SpeakerPosition = "Developer, STD",
                         SpeakerImage = "speaker2.jpg",
-                        EventId=4
+                        EventId = 4
                     },
                     new EventDetail
                     {
@@ -437,7 +444,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Anthony Smith",
                         SpeakerPosition = "CEO, Hastech",
                         SpeakerImage = "speaker1.jpg",
-                        EventId=5
+                        EventId = 5
                     },
                     new EventDetail
                     {
@@ -448,7 +455,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Lucy Rose",
                         SpeakerPosition = "Developer, STD",
                         SpeakerImage = "speaker2.jpg",
-                        EventId=6
+                        EventId = 6
                     },
                     new EventDetail
                     {
@@ -459,7 +466,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Anthony Smith",
                         SpeakerPosition = "CEO, Hastech",
                         SpeakerImage = "speaker1.jpg",
-                        EventId=7
+                        EventId = 7
                     },
                     new EventDetail
                     {
@@ -470,7 +477,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Lucy Rose",
                         SpeakerPosition = "Developer, STD",
                         SpeakerImage = "speaker2.jpg",
-                        EventId=8
+                        EventId = 8
                     },
                     new EventDetail
                     {
@@ -481,7 +488,7 @@ namespace BackEndFinalProject.DAL
                         SpeakerName = "Anthony Smith",
                         SpeakerPosition = "CEO, Hastech",
                         SpeakerImage = "speaker1.jpg",
-                        EventId=9
+                        EventId = 9
                     }
                     );
 
@@ -573,7 +580,7 @@ namespace BackEndFinalProject.DAL
                     new BlogDetail
                     {
                         Id = 1,
-                        Description= "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
+                        Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
                         BlogId = 1
@@ -584,7 +591,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =2
+                        BlogId = 2
                     },
                     new BlogDetail
                     {
@@ -592,7 +599,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =3
+                        BlogId = 3
                     },
                     new BlogDetail
                     {
@@ -600,7 +607,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =4
+                        BlogId = 4
                     },
                     new BlogDetail
                     {
@@ -608,7 +615,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =5
+                        BlogId = 5
                     },
                     new BlogDetail
                     {
@@ -616,7 +623,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =6
+                        BlogId = 6
                     },
                     new BlogDetail
                     {
@@ -624,7 +631,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =7
+                        BlogId = 7
                     },
                     new BlogDetail
                     {
@@ -632,7 +639,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =8
+                        BlogId = 8
                     },
                     new BlogDetail
                     {
@@ -640,7 +647,7 @@ namespace BackEndFinalProject.DAL
                         Description = "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>" +
                         "<p> I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam </p>< p class='quote'>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>" +
                         "<p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>",
-                        BlogId =9
+                        BlogId = 9
                     }
                     );
 
@@ -648,17 +655,17 @@ namespace BackEndFinalProject.DAL
                     new Category
                     {
                         Id = 1,
-                        Name= "CSS Engineering"
+                        Name = "CSS Engineering"
                     },
                     new Category
                     {
                         Id = 2,
-                        Name= "Political Science"
+                        Name = "Political Science"
                     },
                     new Category
                     {
                         Id = 3,
-                        Name= "Micro Biology"
+                        Name = "Micro Biology"
                     },
                     new Category
                     {
@@ -681,15 +688,15 @@ namespace BackEndFinalProject.DAL
                     new Teacher
                     {
                         Id = 1,
-                        Name= "Ömür",
-                        Surname= "Jabiyeva",
-                        Image= "teacher4.jpg",
-                        Position= "Associate Professor",
-                        Facebook="#",
-                        Pinterest="#",
-                        Vimeo="#",
-                        Twitter="#",
-                        IsDeleted=false
+                        Name = "Ömür",
+                        Surname = "Jabiyeva",
+                        Image = "teacher4.jpg",
+                        Position = "Associate Professor",
+                        Facebook = "#",
+                        Pinterest = "#",
+                        Vimeo = "#",
+                        Twitter = "#",
+                        IsDeleted = false
                     },
                     new Teacher
                     {
@@ -847,14 +854,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Developer, Department of Micro Biology",
                         Mail = "omurjb@code.az",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 110,
                         TeamLeader = 110,
-                        Development=110,
-                        Design=110,
-                        Innovation=110,
-                        Communication=110,
-                        TeacherId=1
+                        Development = 110,
+                        Design = 110,
+                        Innovation = 110,
+                        Communication = 110,
+                        TeacherId = 1
                     },
                     new TeacherDetail
                     {
@@ -866,14 +873,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "IT, Department of Micro Biology",
                         Mail = "kamranjb@code.az",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 50,
                         TeamLeader = 95,
                         Development = 95,
                         Design = 95,
                         Innovation = 95,
                         Communication = 95,
-                        TeacherId=2
+                        TeacherId = 2
                     },
                     new TeacherDetail
                     {
@@ -885,7 +892,7 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart3@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
@@ -903,7 +910,7 @@ namespace BackEndFinalProject.DAL
                         Hobbies = "music, travelling, catching fish",
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart4@eduhome.com",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Phone = "(+125) 5896 548 9874",
                         Language = 30,
                         TeamLeader = 85,
@@ -911,7 +918,7 @@ namespace BackEndFinalProject.DAL
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =4
+                        TeacherId = 4
                     },
                     new TeacherDetail
                     {
@@ -923,14 +930,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart5@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =5
+                        TeacherId = 5
                     },
                     new TeacherDetail
                     {
@@ -942,14 +949,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart6@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =6
+                        TeacherId = 6
                     },
                     new TeacherDetail
                     {
@@ -961,14 +968,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart7@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =7
+                        TeacherId = 7
                     },
                     new TeacherDetail
                     {
@@ -980,14 +987,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart8@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =8
+                        TeacherId = 8
                     },
                     new TeacherDetail
                     {
@@ -999,14 +1006,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart9@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =9
+                        TeacherId = 9
                     },
                     new TeacherDetail
                     {
@@ -1018,14 +1025,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart10@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =10
+                        TeacherId = 10
                     },
                     new TeacherDetail
                     {
@@ -1037,14 +1044,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart11@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =11
+                        TeacherId = 11
                     },
                     new TeacherDetail
                     {
@@ -1056,14 +1063,14 @@ namespace BackEndFinalProject.DAL
                         Faculty = "Din, Department of Micro Biology",
                         Mail = "stuart12@eduhome.com",
                         Phone = "(+125) 5896 548 9874",
-                        Skype= "stuart.k",
+                        Skype = "stuart.k",
                         Language = 30,
                         TeamLeader = 85,
                         Development = 80,
                         Design = 75,
                         Innovation = 79,
                         Communication = 73,
-                        TeacherId =12
+                        TeacherId = 12
                     }
                     );
 
@@ -1125,8 +1132,8 @@ namespace BackEndFinalProject.DAL
                     {
                         Id = 1,
                         Image = "about.png",
-                        Title= "<span>EDUHOME</span> the best education theme for you",
-                        Content= "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>" +
+                        Title = "<span>EDUHOME</span> the best education theme for you",
+                        Content = "<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>" +
                         "<p class='hidden-sm'>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>"
                     },
                     new About
@@ -1146,7 +1153,7 @@ namespace BackEndFinalProject.DAL
                         Image = "testimonial.jpg",
                         Description = "I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual",
                         FullName = "David Morgan",
-                        Note= "Student, CSE"
+                        Note = "Student, CSE"
                     },
                     new Testimonial
                     {

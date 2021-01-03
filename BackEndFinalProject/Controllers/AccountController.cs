@@ -1,6 +1,8 @@
-﻿using BackEndFinalProject.Extensions;
+﻿using BackEndFinalProject.DAL;
+using BackEndFinalProject.Extensions;
 using BackEndFinalProject.Models;
 using BackEndFinalProject.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,19 +17,45 @@ namespace BackEndFinalProject.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AppDbContext _context;
 
         public AccountController(UserManager<AppUser> userManager,
                                  SignInManager<AppUser> signInManager,
-                                 RoleManager<IdentityRole> roleManager)
+                                 RoleManager<IdentityRole> roleManager,
+                                 AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _context = context;
         }
         public IActionResult Login()
         {
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Subscribe(SubscribeVM model)
+        {
+            if (!ModelState.IsValid)
+                return NotFound();            
+
+            var existingEmail = _context.Subscribers.FirstOrDefault(x => x.Email == model.Email.Trim());
+
+            if (existingEmail == null)
+            {
+                var subscribeModel = new Subscribe
+                {
+                    Email = model.Email.Trim()
+                };
+                _context.Subscribers.Add(subscribeModel);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index","Home");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM login)
@@ -75,10 +103,10 @@ namespace BackEndFinalProject.Controllers
 
             AppUser newUser = new AppUser
             {
-                Name=register.Name,
-                Surname=register.Surname,
-                UserName=register.UserName,
-                Email=register.Email
+                Name = register.Name,
+                Surname = register.Surname,
+                UserName = register.UserName,
+                Email = register.Email
             };
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
             if (!identityResult.Succeeded)
@@ -91,7 +119,7 @@ namespace BackEndFinalProject.Controllers
             }
             await _userManager.AddToRoleAsync(newUser, Roles.Simple.ToString());
             await _signInManager.SignInAsync(newUser, true);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()

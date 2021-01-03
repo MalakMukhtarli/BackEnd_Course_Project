@@ -20,6 +20,7 @@ namespace BackEndFinalProject.ViewComponents
         {
             List<Course> courses = _context.Courses.Where(c => c.IsDeleted == false).Include(c => c.CourseDetail).Take(take).ToList();
             return View(await Task.FromResult(courses));
+
         }
     }
 }

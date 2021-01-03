@@ -14,5 +14,6 @@ namespace BackEndFinalProject.Models
         [Required]
         public string Surname { get; set; }
         public bool IsDeleted { get; set; }
+
     }
 }
