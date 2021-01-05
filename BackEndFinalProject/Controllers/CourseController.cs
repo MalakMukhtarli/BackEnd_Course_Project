@@ -13,7 +13,6 @@ namespace BackEndFinalProject.Controllers
     public class CourseController : Controller
     {
         private readonly AppDbContext _context;
-
         public CourseController(AppDbContext context)
         {
             _context = context;
@@ -30,12 +29,21 @@ namespace BackEndFinalProject.Controllers
             if (courses == null) return NotFound();
             return View(courses);
         }
-
         public IActionResult Search(string search)
         {
             IEnumerable<Course> model = _context.Courses.Where(c => c.Name.Contains(search)).OrderByDescending(p => p.Id).Take(8);
             return PartialView("_SearchCoursePartial", model);
         }
+        public IActionResult Select(int? id)
+        {
+            if (id == null) return NotFound();
+            List<CategoryCourse> coursesCategory = _context.CategoryCourses.Include(x => x.Course)
+                .Where(x => x.CategoryId == id).ToList();
+            if (coursesCategory == null) return NotFound();
+            List<Course> courses = coursesCategory.Select(x => x.Course).Where(c => c.IsDeleted==false).ToList();
+            if (courses == null) return NotFound();
 
+            return View("~/Views/Shared/Components/Course/Default.cshtml", courses);
+        }
     }
 }

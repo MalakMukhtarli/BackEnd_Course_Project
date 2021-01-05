@@ -17,7 +17,7 @@
             <ul>
                 @foreach (Category category in Model.Categories)
                 {
-                    <li><a href="#">@category.Name</a></li>
+                    <li><a asp-action="Select" asp-route-id="@category.Id">@category.Name</a></li>
                 }
             </ul>
         </div>

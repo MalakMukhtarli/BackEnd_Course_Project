@@ -1,0 +1,27 @@
+﻿@model Notice
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="notice-left-wrapper">
+            <h3 class="mb-5">Notice Board</h3>
+            <div class="notice-left">
+                <div class="single-notice-left mb-23 pb-20">
+                    <h4>@Model.AddedTime.Day, @Model.AddedTime.ToString("MMMM") @Model.AddedTime.Year</h4>
+                    <p>@Model.Content </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4 class="text-danger">Are you sure?</h4>
+        <form method="post">
+            <div class="alert alert-danger" asp-validation-summary="ModelOnly" role="alert"></div>
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
+        </form>
+        <a asp-action="Index" class="btn btn-outline-secondary mt-4">Go Back</a>
+    </div>
+</div>

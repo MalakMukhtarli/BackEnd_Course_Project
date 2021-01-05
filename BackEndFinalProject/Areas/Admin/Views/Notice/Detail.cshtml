@@ -1,0 +1,16 @@
+﻿@model Notice
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="notice-left-wrapper">
+        <h3 class="mb-5">Notice Board</h3>
+        <div class="notice-left">
+            <div class="single-notice-left mb-23 pb-20">
+                <h4>@Model.AddedTime.Day, @Model.AddedTime.ToString("MMMM") @Model.AddedTime.Year</h4>
+                <p>@Model.Content </p>
+            </div>
+        </div>
+    </div>
+</div>

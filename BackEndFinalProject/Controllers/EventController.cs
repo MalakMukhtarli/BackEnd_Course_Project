@@ -36,5 +36,16 @@ namespace BackEndFinalProject.Controllers
                 .OrderByDescending(e => e.Id).Take(8);
             return PartialView("_SearchEventPartial", model);
         }
+        public IActionResult Select(int? id)
+        {
+            if (id == null) return NotFound();
+            List<CategoryEvent> coursesEvent = _context.CategoryEvents.Include(x => x.Event)
+                .Where(x => x.CategoryId == id).ToList();
+            if (coursesEvent == null) return NotFound();
+            List<Event> events = coursesEvent.Select(x => x.Event).Where(c => c.IsDeleted == false).ToList();
+            if (events == null) return NotFound();
+
+            return View("~/Views/Shared/Components/Event/Default.cshtml", events);
+        }
     }
 }
