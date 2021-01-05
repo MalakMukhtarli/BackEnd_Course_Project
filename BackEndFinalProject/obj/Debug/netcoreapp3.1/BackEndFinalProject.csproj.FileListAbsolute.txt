@@ -583,3 +583,8 @@ C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\Bac
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Videos\Index.cshtml.g.cs
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Videos\Detail.cshtml.g.cs
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Videos\Update.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Categories\Create.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Categories\Delete.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Categories\Index.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Categories\Detail.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Categories\Update.cshtml.g.cs

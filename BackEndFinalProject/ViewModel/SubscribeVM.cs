@@ -10,5 +10,6 @@ namespace BackEndFinalProject.ViewModel
     {
         [StringLength(100), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

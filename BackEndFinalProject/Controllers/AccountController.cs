@@ -29,33 +29,32 @@ namespace BackEndFinalProject.Controllers
             _roleManager = roleManager;
             _context = context;
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Subscribe(SubscribeVM model)
         {
             if (!ModelState.IsValid)
-                return NotFound();            
+                return NotFound();
 
-            var existingEmail = _context.Subscribers.FirstOrDefault(x => x.Email == model.Email.Trim());
+            var existingEmail = _context.Subscribers.Where(e=>e.IsDeleted==false).FirstOrDefault(x => x.Email == model.Email.Trim());
 
             if (existingEmail == null)
             {
+                model.IsDeleted = false;
                 var subscribeModel = new Subscribe
                 {
-                    Email = model.Email.Trim()
+                    Email = model.Email.Trim(),
+                    IsDeleted=model.IsDeleted
                 };
                 _context.Subscribers.Add(subscribeModel);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-
+        public IActionResult Login()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM login)

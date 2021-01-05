@@ -11,6 +11,7 @@ namespace BackEndFinalProject.Models
         public int Id { get; set; }
         [Required, MaxLength(50)]
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
         public ICollection<CategoryCourse> CategoryCourses { get; set; }
         public ICollection<CategoryBlog> CategoryBlogs { get; set; }
         public ICollection<CategoryEvent> CategoryEvents { get; set; }

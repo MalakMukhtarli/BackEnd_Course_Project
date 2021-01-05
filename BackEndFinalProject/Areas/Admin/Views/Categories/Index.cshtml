@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title">Categories Table</h4>
+                <a asp-controller="Categories" asp-action="Create" class="btn btn-rounded btn-outline-success">
+                    <i class="mdi mdi-plus-circle-outline" style="font-size: 15px;"> Add Category</i>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Category Name </th>
+                            <th> Settings </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Category category in Model)
+                        {
+                        <tr>
+                            <td class="py-1">
+                                <div>@category.Name</div>
+                            </td>
+                            <td class="py-1">
+                                <a asp-controller="Categories" asp-action="Detail" asp-route-id="@category.Id" class="btn btn-rounded btn-outline-info">
+                                    <i class="mdi mdi-information-outline"></i>
+                                </a>
+                                <a asp-controller="Categories" asp-action="Update" asp-route-id="@category.Id" class="btn btn-rounded btn-outline-warning">
+                                    <i class="mdi mdi-table-edit"></i>
+                                </a>
+                                <a asp-controller="Categories" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-rounded btn-outline-danger">
+                                    <i class="mdi mdi-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
