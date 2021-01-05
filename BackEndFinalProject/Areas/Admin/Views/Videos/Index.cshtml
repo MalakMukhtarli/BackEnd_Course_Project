@@ -1,0 +1,34 @@
+﻿@model IEnumerable<HomeVideo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Video Link
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (HomeVideo video in Model) 
+{
+        <tr>
+            <td>
+                <a href="@video.VideoLink">@video.VideoLink</a>
+            </td>
+            <td style="width: 30%;">
+                <a asp-controller="Videos" asp-action="Detail" asp-route-id="@video.Id" class="btn btn-rounded btn-outline-info">
+                    <i class="mdi mdi-information-outline"></i>
+                </a>
+                <a asp-controller="Videos" asp-action="Update" asp-route-id="@video.Id" class="btn btn-rounded btn-outline-warning">
+                    <i class="mdi mdi-table-edit"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
