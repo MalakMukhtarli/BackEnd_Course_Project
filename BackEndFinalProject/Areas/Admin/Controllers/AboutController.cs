@@ -1,10 +1,13 @@
 ﻿using BackEndFinalProject.DAL;
+using BackEndFinalProject.Extensions;
+using BackEndFinalProject.Helpers;
 using BackEndFinalProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,73 +35,60 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             if (about == null) return NotFound();
             return View(about);
         }
-        // GET: Notice/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Notice/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Notice notice)
-        {
-            if (notice == null)
-            {
-                ModelState.AddModelError("", "Xanani mutleq doldurmalisiniz");
-                return View();
-            }
-            notice.AddedTime = DateTime.Now;
-            notice.IsDeleted = false;
-            await _context.Notices.AddAsync(notice);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        // GET: Notice/Update/5
+        // GET: About/Update/5
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return NotFound();
-            Notice notice = _context.Notices.Where(n => n.IsDeleted == false).FirstOrDefault(n => n.Id == id);
-            if (notice == null) return NotFound();
-            return View(notice);
+            About about = await _context.Abouts.FindAsync(id);
+            if (about == null) return NotFound();
+            return View(about);
         }
-        // POST: Notice/Update/5
+        // POST: About/Update/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Notice notice)
+        public async Task<IActionResult> Update(int? id, About about)
         {
             if (id == null) return NotFound();
-            Notice isExist = _context.Notices.Where(n => n.IsDeleted == false).FirstOrDefault(n => n.Id == id);
-            if (isExist == null) return NotFound();
-            if (notice == null)
+            About AboutSelected = await _context.Abouts.FindAsync(id);
+            if (AboutSelected == null) return NotFound();
+            if (about.Photo == null && about.Title == null && about.Content == null)
             {
                 ModelState.AddModelError("", "Yenilenecek data tapilmadi");
                 return View();
             }
-            isExist.Content = notice.Content;
+            if (about.Photo != null)
+            {
+                bool isExist = about.Photo.IsImage();
+                if (!isExist)
+                {
+                    ModelState.AddModelError("Photo", "Zehmet olmasa shekil tipinde file sechin");
+                    return View();
+                }
+                bool photoLength = about.Photo.PhotoLength(200);
+                if (!photoLength)
+                {
+                    ModelState.AddModelError("Photo", "Zehmet olmasa sheklin olchusu 200kb kechmesin");
+                    return View();
+                }
+                string folder = Path.Combine("assets", "img", "about");
+                bool isDeleted = Helper.DeletedPhotoAbout(_env.WebRootPath, folder, AboutSelected);
+                if (!isDeleted)
+                {
+                    ModelState.AddModelError("Photo", "Sistemde bash veren bir problemle bagli file siline bilmedi");
+                    return View();
+                }
+                AboutSelected.Image = await about.Photo.AddImageAsync(_env.WebRootPath, folder);
+            }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        // GET: Notice/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) return NotFound();
-            Notice notice = _context.Notices.Where(n => n.IsDeleted == false).FirstOrDefault(n => n.Id == id);
-            if (notice == null) return NotFound();
-            return View(notice);
-        }
-        // POST: Notice/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("Delete")]
-        public async Task<IActionResult> DeletePost(int? id)
-        {
-            if (id == null) return NotFound();
-            Notice notice = _context.Notices.Where(n => n.IsDeleted == false).FirstOrDefault(n => n.Id == id);
-            if (notice == null) return NotFound();
-            notice.IsDeleted = true;
-            notice.DeletedTime = DateTime.Now;
+            if (about.Title != null && about.Title!=AboutSelected.Title)
+            {
+                AboutSelected.Title = about.Title;
+            }
+            if (about.Content != null && about.Content != AboutSelected.Content)
+            {
+                AboutSelected.Content = about.Content;
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

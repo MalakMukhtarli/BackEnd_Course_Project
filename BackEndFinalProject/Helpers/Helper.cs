@@ -26,5 +26,15 @@ namespace BackEndFinalProject.Helpers
             }
             return false;
         }
+        public static bool DeletedPhotoAbout(string root, string folder, About aboutSelected)
+        {
+            string pathOldImage = Path.Combine(root, folder, aboutSelected.Image);
+            if (File.Exists(pathOldImage))
+            {
+                File.Delete(pathOldImage);
+                return true;
+            }
+            return false;
+        }
     }
 }

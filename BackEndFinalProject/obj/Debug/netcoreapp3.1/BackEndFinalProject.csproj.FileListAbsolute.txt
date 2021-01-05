@@ -579,3 +579,4 @@ C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\Bac
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Courses\Details.cshtml.g.cs
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Courses\Edit.cshtml.g.cs
 C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Courses\Index.cshtml.g.cs
+C:\Users\HP\Desktop\Code Academy\BackEnd_Final_Project\BackEnd_Final_Project\BackEndFinalProject\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\About\Update.cshtml.g.cs

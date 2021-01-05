@@ -1,7 +1,27 @@
-﻿
+﻿@model About
 @{
     ViewData["Title"] = "Detail";
 }
 
-<h2>Detail</h2>
-
+<!-- About Start -->
+<div class="about-area pt-145 pb-155">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="about-content">
+                    <h2>@Html.Raw(Model.Title)</h2>
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-img">
+                    <img src="~/assets/img/about/@Model.Image" alt="about">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <a asp-action="Index" class="btn btn-outline-secondary">Go Back</a>
+        </div>
+    </div>
+</div>
+<!-- About End -->

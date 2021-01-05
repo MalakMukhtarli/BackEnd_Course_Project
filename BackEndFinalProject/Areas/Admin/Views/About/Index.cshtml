@@ -1,4 +1,4 @@
-﻿
+﻿@model List<About>
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,40 +7,38 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title">Notice Table</h4>
-                <a asp-controller="Notice" asp-action="Create" class="btn btn-rounded btn-outline-success">
-                    <i class="mdi mdi-plus-circle-outline" style="font-size: 15px;"> Add Notice</i>
-                </a>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th> Added Time </th>
+                            <th> Image </th>
+                            <th> Title </th>
                             <th> Content </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Notice notice in Model)
+                        @foreach (About about in Model)
                         {
-                            <tr>
-                                <td class="py-1" style="width: 13%;">
-                                    <div>@notice.AddedTime.Day, @notice.AddedTime.ToString("MMMM") @notice.AddedTime.Year</div>
-                                </td>
-                                <td class="py-1">
-                                    <p>@notice.Content</p>
-                                </td>
-                                <td style="width: 30%;">
-                                    <a asp-controller="Notice" asp-action="Detail" asp-route-id="@notice.Id" class="btn btn-rounded btn-outline-info">
-                                        <i class="mdi mdi-information-outline"></i>
-                                    </a>
-                                    <a asp-controller="Notice" asp-action="Update" asp-route-id="@notice.Id" class="btn btn-rounded btn-outline-warning">
-                                        <i class="mdi mdi-table-edit"></i>
-                                    </a>
-                                    <a asp-controller="Notice" asp-action="Delete" asp-route-id="@notice.Id" class="btn btn-rounded btn-outline-danger">
-                                        <i class="mdi mdi-delete"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="py-1">
+                                <img src="~/assets/img/about/@about.Image" style="width:100px; height:100px" />
+                            </td>
+                            <td class="py-1" style="width: 13%;">
+                                <div>@Html.Raw(about.Title)</div>
+                            </td>
+                            <td class="py-1">
+                                <p>@Html.Raw(about.Content)</p>
+                            </td>
+                            <td style="width: 30%;">
+                                <a asp-controller="About" asp-action="Detail" asp-route-id="@about.Id" class="btn btn-rounded btn-outline-info">
+                                    <i class="mdi mdi-information-outline"></i>
+                                </a>
+                                <a asp-controller="About" asp-action="Update" asp-route-id="@about.Id" class="btn btn-rounded btn-outline-warning">
+                                    <i class="mdi mdi-table-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

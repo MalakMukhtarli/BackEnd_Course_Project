@@ -95,12 +95,14 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int? id, Slider slider)
         {
+            if (id == null) return NotFound();
+            Slider SliderSelected = await _context.Sliders.FindAsync(id);
+            if (SliderSelected == null) return NotFound();
             if (slider.Photo == null && slider.Title == null && slider.Subtitle == null)
             {
                 ModelState.AddModelError("", "Yenilenecek data tapilmadi");
                 return View();
             }
-            if (id == null) return NotFound();
             if (slider.Photo != null)
             {
                 bool isExist = slider.Photo.IsImage();
@@ -115,13 +117,6 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                     ModelState.AddModelError("Photo", "Zehmet olmasa sheklin olchusu 200kb kechmesin");
                     return View();
                 }
-            }
-            
-            Slider SliderSelected = await _context.Sliders.FindAsync(id);
-            if (SliderSelected == null) return NotFound();
-            
-            if (slider.Photo != null)
-            {
                 string folder = Path.Combine("assets", "img", "slider");
                 bool isDeleted = Helper.DeletedPhoto(_env.WebRootPath, folder, SliderSelected);
                 if (!isDeleted)
@@ -129,8 +124,9 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                     ModelState.AddModelError("Photo", "Sistemde bash veren bir problemle bagli file siline bilmedi");
                     return View();
                 }
+                SliderSelected.Image = await slider.Photo.AddImageAsync(_env.WebRootPath, folder);
             }
-                
+             
             if (slider.Title != null)
             {
                 SliderSelected.Title = slider.Title;
@@ -138,11 +134,6 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             if (slider.Subtitle != null)
             {
                 SliderSelected.Subtitle = slider.Subtitle;
-            }
-            if (slider.Photo != null)
-            {
-                string folder = Path.Combine("assets", "img", "slider");
-                SliderSelected.Image = await slider.Photo.AddImageAsync(_env.WebRootPath, folder);
             }
             
             await _context.SaveChangesAsync();
