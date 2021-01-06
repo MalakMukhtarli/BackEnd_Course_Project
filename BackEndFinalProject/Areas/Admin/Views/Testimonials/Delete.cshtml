@@ -1,0 +1,32 @@
+﻿@model Testimonial
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <img src="~/assets/img/testimonial/@Model.Image" class="mw-100" />
+                </div>
+                <div class="my-3">
+                    <div class="px-3">@Model.FullName</div>
+                    <div class="px-3">@Model.Description</div>
+                    <div class="px-3">@Model.Note</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-danger">Are you sure?</h4>
+            <form method="post">
+                <div class="alert alert-danger" asp-validation-summary="ModelOnly" role="alert"></div>
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+            <a asp-action="Index" class="btn btn-outline-secondary mt-4">Go Back</a>
+        </div>
+    </div>
+</div>

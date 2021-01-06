@@ -36,5 +36,15 @@ namespace BackEndFinalProject.Helpers
             }
             return false;
         }
+        public static bool DeletedPhotoTestimonial(string root, string folder, Testimonial testimonialSelected)
+        {
+            string pathOldImage = Path.Combine(root, folder, testimonialSelected.Image);
+            if (File.Exists(pathOldImage))
+            {
+                File.Delete(pathOldImage);
+                return true;
+            }
+            return false;
+        }
     }
 }
