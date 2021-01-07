@@ -35,7 +35,7 @@ namespace BackEndFinalProject.Helpers
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.gmail.com", 465, true);
-                await client.AuthenticateAsync("m.muxtarli.m@gmail.com", "123");
+                await client.AuthenticateAsync("m.muxtarli.m@gmail.com", "12");
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }

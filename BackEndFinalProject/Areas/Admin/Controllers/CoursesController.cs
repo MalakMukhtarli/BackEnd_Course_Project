@@ -12,10 +12,12 @@ using BackEndFinalProject.Extensions;
 using System.IO;
 using BackEndFinalProject.Helpers;
 using BackEndFinalProject.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BackEndFinalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -90,15 +92,15 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             string folder = Path.Combine("assets", "img", "course");
             courseCategoryVM.Course.Image = await courseCategoryVM.Course.Photo.AddImageAsync(_env.WebRootPath, folder);
             courseCategoryVM.Course.IsDeleted = false;
-            foreach (var item in courseCategoryVM.Categories)
-            {
-                courseCategoryVM.CategoryCourses.CategoryId = item;
-                courseCategoryVM.CategoryCourses.CourseId = courseCategoryVM.Course.Id;
-            }
-            await _context.CategoryCourses.AddAsync(courseCategoryVM.CategoryCourses);
+            //foreach (var item in courseCategoryVM.Categories)
+            //{
+            //    courseCategoryVM.CategoryCourses.CategoryId = item;
+            //    courseCategoryVM.CategoryCourses.CourseId = courseCategoryVM.Course.Id;
+            //}
+            //await _context.CategoryCourses.AddAsync(courseCategoryVM.CategoryCourses);
             await _context.Courses.AddAsync(courseCategoryVM.Course);
             await _context.SaveChangesAsync();
-            //NotifyUserWithMail($"/Course/Detail/{courseCategoryVM.Course.Id}");
+            NotifyUserWithMail($"/Course/Detail/{courseCategoryVM.Course.Id}");
             return RedirectToAction(nameof(Index));
         }
 

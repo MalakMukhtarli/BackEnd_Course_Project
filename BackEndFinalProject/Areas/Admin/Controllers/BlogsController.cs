@@ -10,10 +10,13 @@ using BackEndFinalProject.Models;
 using Microsoft.AspNetCore.Hosting;
 using BackEndFinalProject.Extensions;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using BackEndFinalProject.Helpers;
 
 namespace BackEndFinalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class BlogsController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -55,7 +58,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         {
             if (blog == null)
             {
-                ModelState.AddModelError("", "Category bosh ola bilmez");
+                ModelState.AddModelError("", "* bosh ola bilmez");
                 return View(blog);
             }
             if (blog.Photo == null)
@@ -78,10 +81,11 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             string folder = Path.Combine("assets", "img", "blog");
             blog.Image = await blog.Photo.AddImageAsync(_env.WebRootPath, folder);
             blog.IsDeleted = false;
+            blog.AddedTime = DateTime.Now;
             
             await _context.Blogs.AddAsync(blog);
             await _context.SaveChangesAsync();
-            //NotifyUserWithMail($"/Course/Detail/{blog.Id}");
+            NotifyUserWithMail($"/Course/Detail/{blog.Id}");
             return RedirectToAction(nameof(Index));
         }
 
@@ -159,6 +163,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(cd => cd.Id==id);
             if (blog == null) return NotFound();
             blog.IsDeleted = true;
+            blog.DeletedTime = DateTime.Now;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -166,6 +171,13 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         private bool BlogExists(int id)
         {
             return _context.Blogs.Any(e => e.Id == id);
+        }
+        private async void NotifyUserWithMail(string controllerRoute)
+        {
+            var subscriber = _context.Subscribers.ToList().Select(x => x.Email);
+            var linkAdress = $"{Request.Scheme}://{Request.Host}{Request.PathBase}{controllerRoute}";
+
+            await EmailHelper.SendEmailToAllAsync(subscriber, "New event added!", linkAdress);
         }
     }
 }

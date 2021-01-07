@@ -41,7 +41,14 @@
                             </a>
                         </div>
                         <div class="single-post-content">
-                            <h4><a href="blog-details.html">@blog.Title.Substring(0,20)</a></h4>
+                            @if (blog.Title.Length > 20)
+                            {
+                                <h4><a href="blog-details.html">@blog.Title.Substring(0, 20)</a></h4>
+                            }
+                            else
+                            {
+                                <h4><a href="blog-details.html">@blog.Title</a></h4>
+                            }
                             <p>By @blog.ByName  /  @blog.AddedTime.ToString("MMMM") @blog.AddedTime.Day, @blog.AddedTime.Year</p>
                         </div>
                     </div>

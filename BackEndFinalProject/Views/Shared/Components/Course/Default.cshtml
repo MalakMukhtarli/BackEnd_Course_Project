@@ -13,7 +13,7 @@
             </div>
             <div class="course-content">
                 <h3><a href="course-details.html">@course.Name</a></h3>
-                @if (@course.Description.Length > 100)
+                @if (course.Description.Length > 100)
                 {
                     <p>@course.Description.Substring(0, 100)</p>
                 }

@@ -35,19 +35,26 @@ namespace BackEndFinalProject.Controllers
         {
             if (!ModelState.IsValid)
                 return NotFound();
-
-            var existingEmail = _context.Subscribers.Where(e=>e.IsDeleted==false).FirstOrDefault(x => x.Email == model.Email.Trim());
-
-            if (existingEmail == null)
+            try
             {
-                model.IsDeleted = false;
-                var subscribeModel = new Subscribe
+                var existingEmail = _context.Subscribers.FirstOrDefault(x => x.Email == model.Email.Trim());
+
+                if (existingEmail == null)
                 {
-                    Email = model.Email.Trim(),
-                    IsDeleted=model.IsDeleted
-                };
-                _context.Subscribers.Add(subscribeModel);
-                _context.SaveChanges();
+                    model.IsDeleted = false;
+                    var subscribeModel = new Subscribe
+                    {
+                        Email = model.Email.Trim(),
+                        IsDeleted = model.IsDeleted
+                    };
+                    _context.Subscribers.Add(subscribeModel);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
             return RedirectToAction("Index", "Home");
         }
