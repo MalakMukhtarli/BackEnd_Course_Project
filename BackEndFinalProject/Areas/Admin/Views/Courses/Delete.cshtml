@@ -1,51 +1,60 @@
-﻿@model BackEndFinalProject.Models.Course
+﻿@model Course
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DeletedTime)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="courses-details-area blog-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="courses-details">
+                    <div class="courses-details-img">
+                        <img src="~/assets/img/course/@Model.Image" width="100%" alt="courses-details">
+                    </div>
+                    <div class="course-details-content">
+                        <h2>@Model.Name</h2>
+                        <p>@Model.Description</p>
+                        <div class="course-details-left">
+                            <div class="single-course-left">
+                                <h3>about course</h3>
+                                <p>@Model.CourseDetail.CourseAbout</p>
+                            </div>
+                            <div class="single-course-left">
+                                <h3>how to apply</h3>
+                                <p>@Model.CourseDetail.HowToApply</p>
+                            </div>
+                            <div class="single-course-left">
+                                <h3>certification</h3>
+                                @Html.Raw(Model.CourseDetail.Certification)
+                            </div>
+                        </div>
+                        <div class="course-details-right">
+                            <h3>COURSE FEATURES</h3>
+                            <ul>
+                                <li>starts <span>@Model.CourseDetail.CourseStartDate.Day @Model.CourseDetail.CourseStartDate.ToString("MMMM"), @Model.CourseDetail.CourseStartDate.Year</span></li>
+                                <li>duration <span>@Model.CourseDetail.CourseDuration MONTH</span></li>
+                                <li>class duration <span>@Model.CourseDetail.ClassDuration hours</span></li>
+                                <li>skill level <span>@Model.CourseDetail.SkillLevel</span></li>
+                                <li>language <span>@Model.CourseDetail.Language</span></li>
+                                <li>students <span>@Model.CourseDetail.StudentsCount</span></li>
+                                <li>assesments <span>@Model.CourseDetail.Assessment</span></li>
+                            </ul>
+                            <h3 class="red">course fee $@Model.CourseDetail.Price</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-danger">Are you sure?</h4>
+                <form method="post">
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly" role="alert"></div>
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+                <a asp-action="Index" class="btn btn-outline-secondary mt-4">Go Back</a>
+            </div>
+        </div>
+    </div>
 </div>

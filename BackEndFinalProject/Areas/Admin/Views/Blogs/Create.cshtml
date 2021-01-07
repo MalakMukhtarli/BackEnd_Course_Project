@@ -1,0 +1,40 @@
+﻿@model Blog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Course</h4>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="@Model.Photo"></label><span class="text-danger">*</span>
+                    <input asp-for="@Model.Photo" accept="image/*" class="form-control">
+                    <span class="text-danger" asp-validation-for="@Model.Photo"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Title"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Title" placeholder="Title">
+                    <span class="text-danger" asp-validation-for="@Model.Title"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.ByName"></label>
+                    <input class="form-control" asp-for="@Model.ByName" placeholder="ByName">
+                    <span class="text-danger" asp-validation-for="@Model.ByName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.BlogDetail.Description"></label>
+                    <textarea class="form-control" asp-for="@Model.BlogDetail.Description" placeholder="Description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-primary mr-2">Submit</button>
+                <a class="btn btn-outline-danger" asp-action="Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationPatial" />
+}

@@ -72,7 +72,6 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
 
             #endregion
             await _context.SaveChangesAsync();
-            //NotifyUserWithMail($"/Teacher/Detail/{teacher.Id}");
             return RedirectToAction(nameof(Index));
         }
 
@@ -252,15 +251,6 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             teacher.DeletedTime = DateTime.Now;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        //mail yollamaq uchun
-        private async void NotifyUserWithMail(string controllerRoute)
-        {
-            var subscriber = _context.Subscribers.ToList().Select(x => x.Email);
-            var linkAdress = $"{Request.Scheme}://{Request.Host}{Request.PathBase}{controllerRoute}";
-
-            await EmailHelper.SendEmailToAllAsync(subscriber, "New event added!", linkAdress);
         }
     }
 }

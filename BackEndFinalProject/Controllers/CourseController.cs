@@ -19,6 +19,7 @@ namespace BackEndFinalProject.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.CourseCount = _context.Courses.Where(c => c.IsDeleted == false).Count();
             return View();
         }
         public IActionResult Detail(int? id)
