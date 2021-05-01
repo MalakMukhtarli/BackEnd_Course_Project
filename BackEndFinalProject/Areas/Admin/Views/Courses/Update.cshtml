@@ -1,4 +1,4 @@
-﻿@model Course
+﻿@model CourseCategoryVM
 @{
     ViewData["Title"] = "Update";
 }
@@ -9,78 +9,79 @@
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <form class="forms-sample" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label asp-for="@Model.Photo"></label><span class="text-danger">*</span>
-                    <input asp-for="@Model.Photo" accept="image/*" class="form-control">
-                    <span class="text-danger" asp-validation-for="@Model.Photo"></span>
+                    <label asp-for="@Model.Course.Photo"></label><span class="text-danger">*</span>
+                    <input asp-for="@Model.Course.Photo" accept="image/*" class="form-control">
+                    <span class="text-danger" asp-validation-for="@Model.Course.Photo"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.Name"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.Name" placeholder="Course Name">
-                    <span class="text-danger" asp-validation-for="@Model.Name"></span>
+                    <label asp-for="@Model.Course.Name"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.Name" placeholder="Course Name">
+                    <span class="text-danger" asp-validation-for="@Model.Course.Name"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.Description"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.Description" placeholder="Description">
-                    <span class="text-danger" asp-validation-for="@Model.Description"></span>
+                    <label asp-for="@Model.Course.Description"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.Description" placeholder="Description">
+                    <span class="text-danger" asp-validation-for="@Model.Course.Description"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.CourseAbout"></label>
-                    <input class="form-control" asp-for="@Model.CourseDetail.CourseAbout" placeholder="Course About">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.CourseAbout"></span>
+                    <label asp-for="@Model.Course.CourseDetail.CourseAbout"></label>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.CourseAbout" placeholder="Course About">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.CourseAbout"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.HowToApply"></label>
-                    <input class="form-control" asp-for="@Model.CourseDetail.HowToApply" placeholder="How To Apply">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.HowToApply"></span>
+                    <label asp-for="@Model.Course.CourseDetail.HowToApply"></label>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.HowToApply" placeholder="How To Apply">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.HowToApply"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.Certification"></label>
-                    <input class="form-control" asp-for="@Model.CourseDetail.Certification" placeholder="Certification">
+                    <label asp-for="@Model.Course.CourseDetail.Certification"></label>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.Certification" placeholder="Certification">
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.CourseStartDate"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.CourseStartDate" placeholder="Course Start Date">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.CourseStartDate"></span>
+                    <label asp-for="@Model.Course.CourseDetail.CourseStartDate"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.CourseStartDate" placeholder="Course Start Date">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.CourseStartDate"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.CourseDuration"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.CourseDuration" placeholder="Course Duration">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.CourseDuration"></span>
+                    <label asp-for="@Model.Course.CourseDetail.CourseDuration"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.CourseDuration" placeholder="Course Duration">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.CourseDuration"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.ClassDuration"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.ClassDuration" placeholder="Class Duration">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.ClassDuration"></span>
+                    <label asp-for="@Model.Course.CourseDetail.ClassDuration"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.ClassDuration" placeholder="Class Duration">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.ClassDuration"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.SkillLevel"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.SkillLevel" placeholder="Skill Level">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.SkillLevel"></span>
+                    <label asp-for="@Model.Course.CourseDetail.SkillLevel"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.SkillLevel" placeholder="Skill Level">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.SkillLevel"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.Language"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.Language" placeholder="Language">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.Language"></span>
+                    <label asp-for="@Model.Course.CourseDetail.Language"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.Language" placeholder="Language">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Language"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.StudentsCount"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.StudentsCount" placeholder="Students Count">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.StudentsCount"></span>
+                    <label asp-for="@Model.Course.CourseDetail.StudentsCount"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.StudentsCount" placeholder="Students Count">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.StudentsCount"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.Assessment"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.Assessment" placeholder="Assessment">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.Assessment"></span>
+                    <label asp-for="@Model.Course.CourseDetail.Assessment"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.Assessment" placeholder="Assessment">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Assessment"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.CourseDetail.Price"></label><span class="text-danger">*</span>
-                    <input class="form-control" asp-for="@Model.CourseDetail.Price" placeholder="Price">
-                    <span class="text-danger" asp-validation-for="@Model.CourseDetail.Price"></span>
+                    <label asp-for="@Model.Course.CourseDetail.Price"></label><span class="text-danger">*</span>
+                    <input class="form-control" asp-for="@Model.Course.CourseDetail.Price" placeholder="Price">
+                    <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Price"></span>
                 </div>
-                @foreach (Category ctg in ViewBag.Ctg)
+
+                @foreach (Category ctg in Model.CategoriesView)
                 {
                     <div class="mt-3 form-group">
-                        <input type="checkbox" name="categories" value="@ctg.Name" /> @ctg.Name
+                        <input type="checkbox" name="categories" value="@ctg.Id" /> @ctg.Name
                     </div>
                 }
                 <button type="submit" class="btn btn-outline-primary mr-2">Submit</button>

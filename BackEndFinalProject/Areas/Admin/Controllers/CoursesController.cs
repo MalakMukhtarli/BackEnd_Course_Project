@@ -42,7 +42,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             return View(course);
         }
         // GET: Admin/Courses/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             CourseCategoryVM courseCategory = new CourseCategoryVM
             {
@@ -64,19 +64,22 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Category bosh ola bilmez");
                 return View(courseCategoryVM);
             }
+
             if (courseCategoryVM.Course.Photo == null)
             {
                 ModelState.AddModelError("", "Shekil bosh ola bilmez");
                 return View(courseCategoryVM);
             }
-            //foreach (int ctg in courseCategoryVM.Categories)
-            //{
-            //    if (categories.Any(c => c.Id != ctg))
-            //    {
-            //        ModelState.AddModelError("", "Bele bir categoriya movcud deyil");
-            //        return View(courseCategoryVM);
-            //    }
-            //}
+
+            foreach (int ctg in courseCategoryVM.Categories)
+            {
+                if (!(categories.Any(c => c.Id == ctg)))
+                {
+                    ModelState.AddModelError("", "Bele bir categoriya movcud deyil");
+                    return View(courseCategoryVM);
+                }
+            }
+
             bool isExist = courseCategoryVM.Course.Photo.IsImage();
             if (!isExist)
             {
@@ -92,15 +95,27 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
             string folder = Path.Combine("assets", "img", "course");
             courseCategoryVM.Course.Image = await courseCategoryVM.Course.Photo.AddImageAsync(_env.WebRootPath, folder);
             courseCategoryVM.Course.IsDeleted = false;
-            //foreach (var item in courseCategoryVM.Categories)
-            //{
-            //    courseCategoryVM.CategoryCourses.CategoryId = item;
-            //    courseCategoryVM.CategoryCourses.CourseId = courseCategoryVM.Course.Id;
-            //}
-            //await _context.CategoryCourses.AddAsync(courseCategoryVM.CategoryCourses);
+
             await _context.Courses.AddAsync(courseCategoryVM.Course);
+
             await _context.SaveChangesAsync();
-            NotifyUserWithMail($"/Course/Detail/{courseCategoryVM.Course.Id}");
+
+            List<CategoryCourse> viewModel = new List<CategoryCourse>();
+            foreach (var ctgId in courseCategoryVM.Categories)
+            {
+                viewModel.Add(new CategoryCourse
+                {
+                    CourseId = courseCategoryVM.Course.Id,
+                    CategoryId = ctgId
+                });
+            }
+            foreach (var item in viewModel)
+            {
+                await _context.CategoryCourses.AddAsync(item);
+            }
+
+            await _context.SaveChangesAsync();
+            //NotifyUserWithMail($"/Course/Detail/{courseCategoryVM.Course.Id}");
             return RedirectToAction(nameof(Index));
         }
 
@@ -108,11 +123,23 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return NotFound();
-            var course = await _context.Courses.Where(c => c.IsDeleted == false)
-                .Include(cd => cd.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
+            Course course = await _context.Courses.Where(c => c.IsDeleted == false).Include(cd => cd.CourseDetail)
+                .Include(cc => cc.CategoryCourses).ThenInclude(c => c.Category).FirstOrDefaultAsync(c => c.Id == id);
+
             if (course == null) return NotFound();
-            ViewBag.Ctg = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync();
-            return View(course);
+            List<int> ctgId = new List<int>();
+            foreach (CategoryCourse ctgCrs in course.CategoryCourses)
+            {
+                ctgId.Add(ctgCrs.CategoryId);
+            }
+            CourseCategoryVM courseCategoryVM = new CourseCategoryVM
+            {
+                Course = course,
+                Categories = ctgId,
+                CategoriesView = _context.Categories.Where(c => c.IsDeleted == false).ToList()
+            };
+            //ViewBag.Ctg = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync();
+            return View(courseCategoryVM);
         }
 
         // POST: Admin/Courses/Update/5
@@ -120,52 +147,75 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Course course)
+        public async Task<IActionResult> Update(int? id, CourseCategoryVM courseCategoryVM)
         {
-            ViewBag.Ctg = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync();
+            //ViewBag.Ctg = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync();
+            var categories = courseCategoryVM.CategoriesView = _context.Categories.Where(c => c.IsDeleted == false).ToList();
             if (id == null) return NotFound();
-            if (id != course.Id) return NotFound();
+            
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(courseCategoryVM);
             }
-            if (course.Photo != null)
+            Course CourseSelected = _context.Courses.Where(c => c.IsDeleted == false).Include(cd => cd.CourseDetail)
+                .Include(cc => cc.CategoryCourses).ThenInclude(c => c.Category).FirstOrDefault(c => c.Id == id);
+            if (CourseSelected == null) return NotFound();
+
+            if (courseCategoryVM.Course.Photo != null)
             {
-                bool isExist = course.Photo.IsImage();
+                bool isExist = courseCategoryVM.Course.Photo.IsImage();
                 if (!isExist)
                 {
                     ModelState.AddModelError("Photo", "Zehmet olmasa shekil tipinde file sechin");
-                    return View();
+                    return View(courseCategoryVM);
                 }
-                bool photoLength = course.Photo.PhotoLength(200);
+                bool photoLength = courseCategoryVM.Course.Photo.PhotoLength(200);
                 if (!photoLength)
                 {
                     ModelState.AddModelError("Photo", "Zehmet olmasa sheklin olchusu 200kb kechmesin");
-                    return View();
+                    return View(courseCategoryVM);
                 }
             }
-            Course CourseSelected = _context.Courses.Where(c => c.IsDeleted == false)
-                .Include(c => c.CourseDetail).FirstOrDefault(c => c.Id == id);
-            if (CourseSelected == null) return NotFound();
-            CourseSelected.Name = course.Name;
-            CourseSelected.Description = course.Description;
-            CourseSelected.CourseDetail.CourseAbout = course.CourseDetail.CourseAbout;
-            CourseSelected.CourseDetail.HowToApply = course.CourseDetail.HowToApply;
-            CourseSelected.CourseDetail.Certification = course.CourseDetail.Certification;
-            CourseSelected.CourseDetail.CourseStartDate = course.CourseDetail.CourseStartDate;
-            CourseSelected.CourseDetail.CourseDuration = course.CourseDetail.CourseDuration;
-            CourseSelected.CourseDetail.ClassDuration = course.CourseDetail.ClassDuration;
-            CourseSelected.CourseDetail.SkillLevel = course.CourseDetail.SkillLevel;
-            CourseSelected.CourseDetail.Language = course.CourseDetail.Language;
-            CourseSelected.CourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
-            CourseSelected.CourseDetail.Assessment = course.CourseDetail.Assessment;
-            CourseSelected.CourseDetail.Price = course.CourseDetail.Price;
+            CourseSelected.Name = courseCategoryVM.Course.Name;
+            CourseSelected.Description = courseCategoryVM.Course.Description;
+            CourseSelected.CourseDetail.CourseAbout = courseCategoryVM.Course.CourseDetail.CourseAbout;
+            CourseSelected.CourseDetail.HowToApply = courseCategoryVM.Course.CourseDetail.HowToApply;
+            CourseSelected.CourseDetail.Certification = courseCategoryVM.Course.CourseDetail.Certification;
+            CourseSelected.CourseDetail.CourseStartDate = courseCategoryVM.Course.CourseDetail.CourseStartDate;
+            CourseSelected.CourseDetail.CourseDuration = courseCategoryVM.Course.CourseDetail.CourseDuration;
+            CourseSelected.CourseDetail.ClassDuration = courseCategoryVM.Course.CourseDetail.ClassDuration;
+            CourseSelected.CourseDetail.SkillLevel = courseCategoryVM.Course.CourseDetail.SkillLevel;
+            CourseSelected.CourseDetail.Language = courseCategoryVM.Course.CourseDetail.Language;
+            CourseSelected.CourseDetail.StudentsCount = courseCategoryVM.Course.CourseDetail.StudentsCount;
+            CourseSelected.CourseDetail.Assessment = courseCategoryVM.Course.CourseDetail.Assessment;
+            CourseSelected.CourseDetail.Price = courseCategoryVM.Course.CourseDetail.Price;
 
-            if (course.Photo != null)
+            if (courseCategoryVM.Course.Photo != null)
             {
                 string folder = Path.Combine("assets", "img", "course");
-                CourseSelected.Image = await course.Photo.AddImageAsync(_env.WebRootPath, folder);
+                CourseSelected.Image = await courseCategoryVM.Course.Photo.AddImageAsync(_env.WebRootPath, folder);
             }
+
+            foreach (int ctg in courseCategoryVM.Categories)
+            {
+                if (!(categories.Any(c => c.Id == ctg)))
+                {
+                    ModelState.AddModelError("", "Bele bir categoriya movcud deyil");
+                    return View(courseCategoryVM);
+                }
+            }
+            await _context.SaveChangesAsync();
+            List<int> ctgId = new List<int>();
+            foreach (CategoryCourse ctgCrs in CourseSelected.CategoryCourses)
+            {
+                ctgId.Add(ctgCrs.CategoryId);
+            }
+            ctgId = courseCategoryVM.Categories;
+            //CourseCategoryVM courseCategoryVM = new CourseCategoryVM
+            //{
+            //    Course = course,
+            //    Categories = ctgId
+            //};
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
