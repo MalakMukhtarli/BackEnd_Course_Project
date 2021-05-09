@@ -109,7 +109,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                     CategoryId = ctgId
                 });
             }
-            foreach (var item in viewModel)
+            foreach (CategoryCourse item in viewModel)
             {
                 await _context.CategoryCourses.AddAsync(item);
             }
@@ -161,6 +161,15 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 .Include(cc => cc.CategoryCourses).ThenInclude(c => c.Category).FirstOrDefault(c => c.Id == id);
             if (CourseSelected == null) return NotFound();
 
+            foreach (int ctg in courseCategoryVM.Categories)
+            {
+                if (!(categories.Any(c => c.Id == ctg)))
+                {
+                    ModelState.AddModelError("", "Bele bir categoriya movcud deyil");
+                    return View(courseCategoryVM);
+                }
+            }
+
             if (courseCategoryVM.Course.Photo != null)
             {
                 bool isExist = courseCategoryVM.Course.Photo.IsImage();
@@ -195,27 +204,25 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 string folder = Path.Combine("assets", "img", "course");
                 CourseSelected.Image = await courseCategoryVM.Course.Photo.AddImageAsync(_env.WebRootPath, folder);
             }
-
-            foreach (int ctg in courseCategoryVM.Categories)
-            {
-                if (!(categories.Any(c => c.Id == ctg)))
-                {
-                    ModelState.AddModelError("", "Bele bir categoriya movcud deyil");
-                    return View(courseCategoryVM);
-                }
-            }
-            await _context.SaveChangesAsync();
-            List<int> ctgId = new List<int>();
+            
             foreach (CategoryCourse ctgCrs in CourseSelected.CategoryCourses)
             {
-                ctgId.Add(ctgCrs.CategoryId);
+                _context.CategoryCourses.Remove(ctgCrs);
             }
-            ctgId = courseCategoryVM.Categories;
-            //CourseCategoryVM courseCategoryVM = new CourseCategoryVM
-            //{
-            //    Course = course,
-            //    Categories = ctgId
-            //};
+
+            List<CategoryCourse> viewModel = new List<CategoryCourse>();
+            foreach (var ctgId in courseCategoryVM.Categories)
+            {
+                viewModel.Add(new CategoryCourse
+                {
+                    CourseId = CourseSelected.Id,
+                    CategoryId = ctgId
+                });
+            }
+            foreach (CategoryCourse ctgCrs in viewModel)
+            {
+                await _context.CategoryCourses.AddAsync(ctgCrs);
+            }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -240,6 +247,7 @@ namespace BackEndFinalProject.Areas.Admin.Controllers
                 .Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
             if (course == null) return NotFound();
             course.IsDeleted = true;
+            course.DeletedTime = DateTime.Now;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
